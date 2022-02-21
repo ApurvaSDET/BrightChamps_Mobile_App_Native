@@ -18,7 +18,7 @@ Feature: Demo User Part 1
 
     Then   User is at the Home Page
 
-  @Regression @Demo1
+  @Regression @Demo
   Scenario: 2 #Verifying Reschedule Your Class feature for demo user
 
     Given   User is at the Home Page
@@ -39,7 +39,7 @@ Feature: Demo User Part 1
     When    User clicks on back button of Reschedule Screen
     And     User should be redirected to Home Page
 
-  @Regression @Demo1
+  @Regression @Demo
   Scenario: 4 #Validating error messages on Reschedule Screen
 
     Given   User is at the Home Page
@@ -62,7 +62,7 @@ Feature: Demo User Part 1
     Then    Verify Certificate on Home Page is visible
     And     Verify Visible Certificate is locked
 
-  @Regression @Demo1
+  @Regression @Demo
   Scenario: 6 #Verifying Glimpse of Project section on Demo Home Page
 
     Given   User is at the Home Page
@@ -78,7 +78,7 @@ Feature: Demo User Part 1
     Then    User is at Upgrade Your Plan Page
 
 
-  @Regression @Demo1
+  @Regression @Demo
   Scenario: 8 #Verifying ‘Upgrade Package Page’ from bottom tab
 
     Given  User is at the Home Page

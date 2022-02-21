@@ -35,7 +35,7 @@ Feature: Profile Page
     Then  Share bottom sheet should open
     When  User navigates back using device back button
     Then  Share bottom sheet should be dismissed
-    And   Toast message should appear
+    #And   Toast message should appear
 
 
   @Regression @ReferFriend

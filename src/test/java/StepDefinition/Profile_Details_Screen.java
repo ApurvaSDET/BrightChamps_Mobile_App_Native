@@ -147,10 +147,10 @@ public class Profile_Details_Screen extends BaseUtil {
     public void profile_updated_success_message_should_appear() {
 
         //Waiting for Success message to appear
-        _wait(POP.Profile_Update_Success_toast);
+        _wait(PO.Toast_Message);
 
         //Asserting the success msg should disappear in few seconds
-        _waitAbsence(POP.Profile_Update_Success_toast);
+        _waitAbsence(PO.Toast_Message);
     }
 
     @And("Profile Page should get updated")

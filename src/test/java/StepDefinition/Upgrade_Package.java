@@ -105,8 +105,8 @@ public class Upgrade_Package extends BaseUtil {
     @Then("User is at Upgrade Package Page")
     public void user_is_at_upgrade_package_page() {
 
-        _wait(PO.Upgrade_Plan_Page);
-        Assert.assertTrue(_is_displayed(PO.Upgrade_Plan_Page));
+        _wait(PO.Page_Title);
+        Assert.assertTrue(_is_displayed(PO.Page_Title));
 
     }
 
@@ -152,7 +152,7 @@ public class Upgrade_Package extends BaseUtil {
     @When("User clicks on back button of Curriculum Page")
     public void user_clicks_on_back_button_of_curriculum_page() {
 
-        _click(PO.Curriculum_Back_button);
+        _click(PO.Page_back_button);
 
     }
 
@@ -190,7 +190,7 @@ public class Upgrade_Package extends BaseUtil {
         _click(PO.Schedule_classes_CTA_home);
 
        //waiting for Schedule your classes screen
-        _wait(PO.Schedule_classes_Home_Page);
+        _wait(PO.Page_Title);
 
         //Reusing methods from Rescheduling All Class scenario to schedule All the classes
         obj.by_default_three_class_per_week_should_be_shown();

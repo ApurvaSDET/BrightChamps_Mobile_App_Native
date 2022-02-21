@@ -70,8 +70,8 @@ public class Profile_Page extends BaseUtil {
     @And("Toast message should appear")
     public void toast_message_should_appear() {
 
-        _wait(POP.Toast_Message_for_Referral);
-        Assert.assertEquals("Referral Link Copied!", _get_text(POP.Toast_Message_for_Referral));
+        _wait(PO.Native_Toast_Message);
+        Assert.assertTrue(_is_displayed(PO.Native_Toast_Message));
 
     }
 
@@ -80,7 +80,7 @@ public class Profile_Page extends BaseUtil {
     @When("User taps on back button on screen")
     public void user_taps_on_back_button_on_screen() {
 
-        _click(POP.Refer_friend_Screen_back_button);
+        _click(PO.Page_back_button);
 
     }
 

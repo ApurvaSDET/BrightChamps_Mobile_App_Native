@@ -1,4 +1,4 @@
-Feature: Home Page Part 2 - Curriculum Page
+Feature: Home Page Part 2
   Description: Test Automation for covering all possible cases of a Curriculum Page for Paid users on Home Page
 
   Background: User is Logged In

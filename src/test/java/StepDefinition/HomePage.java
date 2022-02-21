@@ -52,7 +52,7 @@ public class HomePage extends BaseUtil {
     @When("User clicks on back button")
     public void user_clicks_on_back_button() {
 
-        _click(PO.Back_button);
+        _click(PO.Page_back_button);
     }
 
     @Then("User should be redirected to Home Page")
@@ -94,8 +94,8 @@ public class HomePage extends BaseUtil {
     @Then("User should be able to successfully Reschedule the class")
     public void user_should_be_able_to_successfully_reschedule_the_class() {
 
-        _wait(PO.Toast_Message_Reschedule);
-        Assert.assertTrue(_is_displayed(PO.Toast_Message_Reschedule));
+        _wait(PO.Toast_Message);
+        Assert.assertTrue(_get_text(PO.Toast_Message).contains("Your class has been rescheduled to"));
 
     }
 
@@ -194,8 +194,8 @@ public class HomePage extends BaseUtil {
     @Then("User should be able to successfully Reschedule all the classes")
     public void user_should_be_able_to_successfully_reschedule_all_the_classes() {
 
-        _wait(PO.Toast_Message_Reschedule_all_class);
-        Assert.assertTrue(_is_displayed(PO.Toast_Message_Reschedule_all_class));
+        _wait(PO.Toast_Message);
+        Assert.assertEquals("Your classes have been rescheduled!", _get_text(PO.Toast_Message));
 
     }
 
@@ -238,8 +238,8 @@ public class HomePage extends BaseUtil {
     @Then("User should be able to successfully Cancel the class")
     public void user_should_be_able_to_successfully_cancel_the_class() {
 
-        _wait(PO.Toast_Message_Cancel);
-        Assert.assertTrue(_is_displayed(PO.Toast_Message_Cancel));
+        _wait(PO.Toast_Message);
+        Assert.assertTrue(_get_text(PO.Toast_Message).contains("has been cancelled!"));
 
     }
 

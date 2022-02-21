@@ -20,8 +20,8 @@ public class Curriculum extends BaseUtil {
     @Then("User is redirected to Curriculum Page")
     public void user_is_redirected_to_curriculum_page() {
 
-        _wait(PO.Curriculum_Page);
-        Assert.assertTrue(_is_displayed(PO.Curriculum_Page));
+        _wait(PO.Page_Title);
+        Assert.assertTrue(_is_displayed(PO.Page_Title));
     }
 
 
@@ -56,10 +56,10 @@ public class Curriculum extends BaseUtil {
             _wait(PO.SESSION_BOOKLET_Link);
 
             //Navigating back to Curriculum Page from Completed Class details screen
-            _click(PO.Curriculum_back_button);
+            _click(PO.Page_back_button);
 
             //Asserting if landed on Curriculum screen
-            _wait(PO.Curriculum_Page);
+            _wait(PO.Page_Title);
         }
 
     }
@@ -96,10 +96,10 @@ public class Curriculum extends BaseUtil {
             _wait(PO.Assignment_Link);
 
             //Navigating back to Curriculum Page from Completed Class details screen
-            _click(PO.Curriculum_back_button);
+            _click(PO.Page_back_button);
 
             //Asserting if landed on Curriculum screen
-            _wait(PO.Curriculum_Page);
+            _wait(PO.Page_Title);
         }
 
 

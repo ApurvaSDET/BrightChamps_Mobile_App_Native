@@ -73,8 +73,8 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @Then("User should be able to successfully Reschedule the demo class")
     public void user_should_be_able_to_successfully_reschedule_the_demo_class() {
 
-        _wait(PO.Toast_Message_Reschedule);
-        Assert.assertTrue(_is_displayed(PO.Toast_Message_Reschedule));
+        _wait(PO.Toast_Message);
+        Assert.assertTrue(_is_displayed(PO.Toast_Message));
 
     }
 
@@ -93,7 +93,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("User clicks on back button of Reschedule Screen")
     public void user_clicks_on_back_button() {
 
-        _click(POD.Back_button_demo_Reschedule_screen);
+        _click(PO.Page_back_button);
     }
 
     //Scenario: 4 #Validating error messages on Reschedule Screen
@@ -102,8 +102,8 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @Then("Toast Message for Selecting Class Slot Should appear")
     public void toast_message_for_class_slot_should_appear() {
 
-        _wait(POD.Validation_Message_Select_Slot);
-        Assert.assertEquals("Select class slot!", _get_text(POD.Validation_Message_Select_Slot));
+        _wait(PO.Native_Toast_Message);
+        Assert.assertEquals("Select class slot!", _get_text(PO.Native_Toast_Message));
 
     }
 
@@ -135,8 +135,8 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @Then("Toast Message for Selecting Reschedule Reason Should appear")
     public void toast_message_for_reschedule_should_appear() {
 
-        _wait(POD.Validation_Message_Select_Reschedule_Reason);
-        Assert.assertEquals("Select reschedule reason", _get_text(POD.Validation_Message_Select_Reschedule_Reason));
+        _wait(PO.Native_Toast_Message);
+        Assert.assertEquals("Select reschedule reason", _get_text(PO.Native_Toast_Message));
     }
 
     //Scenario: 5 #Verifying locked Certificate on Home Page
@@ -166,7 +166,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("When User scrolls down to the Awesome projects cards")
     public void when_user_scrolls_down_to_the_awesome_projects_cards() throws InterruptedException {
 
-        Scrolling_to_element(POD.Video_Card_Text);
+        Scrolling_to_element(POD.Start_Creating);
 
     }
 
@@ -174,7 +174,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     public void verify_user_should_be_able_to_successfully_play_and_close_all_the_videos() {
 
         //Logic to Click on each videos till last available videos
-        while(_is_displayed(POD.Next_Video_button)) {
+        while(!_is_displayed(POD.Next_Video_button_disabled)) {
 
             //CLicking on each Video Card
             _click(POD.Video_Card_Container);
@@ -206,8 +206,8 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("User is at Upgrade Your Plan Page")
     public void User_is_at_Upgrade_Your_Plan_Page() {
 
-        _wait(POD.Upgrade_your_Plan);
-        Assert.assertTrue(_is_displayed(POD.Upgrade_your_Plan));
+        _wait(PO.Page_Title);
+        Assert.assertTrue(_is_displayed(PO.Page_Title));
 
     }
 

@@ -14,13 +14,9 @@ public class PageObjectProfile {
 
     public By Share_Link = By.xpath("//*[@text='SHARE LINK']");
 
-    public By Toast_Message_for_Referral = By.xpath("//*[@text='Referral Link Copied!']");
-
-    public By Refer_friend_Screen_back_button = By.xpath("//*[@text='Refer a friend']/preceding-sibling::*");
-
     public By Save_CTA = By.xpath("//*[@text='Save']");
 
-    public By Profile_Back = By.xpath("//*[@text='Profile Details']/preceding-sibling::*");
+    public By Page_back_button = By.xpath("//*[@content-desc='page_back_button']");
 
     public By DOB = By.xpath("//*[@text='Date of Birth']/following-sibling::*");
 
@@ -28,9 +24,7 @@ public class PageObjectProfile {
 
     public By DOB_Bottom_Sheet = By.xpath("//*[@text='Select Date of Birth']");
 
-    public By Profile_Update_Success_toast = By.xpath("//*[@text='Profile details updated!']");
-
-    public By Profile_Sub_Heading = By.xpath("//*[@text='Certification']/parent::*/preceding-sibling::*");
+    public By Profile_Sub_Heading = By.xpath("//*[@content-desc='profile_page_username']");
 
     public By Student_Name = By.xpath("//*[@text='Student Name']/following-sibling::*");
 
@@ -87,7 +81,7 @@ public class PageObjectProfile {
     public void Save_back_forth() {
 
         //Navigating back to Profile screen
-        BaseUtil._click(this.Profile_Back);
+        BaseUtil._click(this.Page_back_button);
         BaseUtil._wait(this.Personal_info);
 
         //Navigating to Profile Details Screen and Scrolling till Hobbies section

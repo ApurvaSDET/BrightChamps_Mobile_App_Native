@@ -79,8 +79,8 @@ public class TitlePage extends BaseUtil {
     @Then("User is at Profile screen")
     public void user_is_at_profile_screen() {
 
-        _wait(PO.Profile_screen);
-        Assert.assertEquals("Profile", _get_text(PO.Profile_screen));
+        _wait(PO.Page_Title);
+        Assert.assertEquals("Profile", _get_text(PO.Page_Title));
     }
 
     @When("User clicks logout button")

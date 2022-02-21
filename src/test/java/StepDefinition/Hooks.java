@@ -26,7 +26,7 @@ public class Hooks extends BaseUtil {
     static ADBExecutor adbExecutor = new ADBExecutor();
     public static String App_ID;
 
-    @BeforeAll
+    //@BeforeAll
     public void _get_appID() throws IOException {
 
         String url = "apurvakushwaha_ty18QO:nKoiDb51xy1h9pQoTjPq";
@@ -75,7 +75,7 @@ public class Hooks extends BaseUtil {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @Before
+
     public void App_launch_On_BrowserStackCloud() throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -106,7 +106,7 @@ public class Hooks extends BaseUtil {
 
     }
 
-
+    @Before
     public void App_launch() throws MalformedURLException {
 
         DesiredCapabilities cap = new DesiredCapabilities();

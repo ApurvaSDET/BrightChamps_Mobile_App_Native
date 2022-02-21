@@ -1,9 +1,9 @@
-Feature: Home Page Part 3 - Multiple Users with in a Single a/c
+Feature: Home Page Part 3
   Description: Test Automation for Multiple users under single a/c
 
 
   @Regression @MultipleDemoUsers
-  Scenario: 1 #Verifying User lands on the same a/c when selected from dropdown on HomePage
+  Scenario: 1 #Verifying User lands on the same a/c when selected from dropdown on ProfilePage
 
     Given  User is at Student portal master login Page
     When   User enters valid Phone no and password
@@ -18,8 +18,8 @@ Feature: Home Page Part 3 - Multiple Users with in a Single a/c
     And    Verify user should be able to select multiple users
 
 
-  @Regression12 @MultiplePaidUsers
-  Scenario: 2 #Verifying User lands on the same a/c when selected from dropdown on HomePage
+  @Regression @MultiplePaidUsers
+  Scenario: 2 #Verifying User lands on the same a/c when selected from dropdown on ProfilePage
 
     Given  User is at Student portal master login Page
     When   User enters valid Phone no and password

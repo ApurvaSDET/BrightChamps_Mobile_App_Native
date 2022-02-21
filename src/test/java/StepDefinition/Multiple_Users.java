@@ -48,7 +48,7 @@ public class Multiple_Users extends BaseUtil {
 
             //Navigating back to Profile Page
             _click(PO.profile_tab);
-            _wait(PO.Profile_screen);
+            _wait(PO.Page_Title);
         }
 
     }

@@ -1,4 +1,4 @@
-Feature: Home Page Part 3 - Upgrade Package Scenarios
+Feature: Home Page Part 3
   Description: Test Automation for Upgrade Package Scenarios
 
   Background: User is Logged In
@@ -11,7 +11,6 @@ Feature: Home Page Part 3 - Upgrade Package Scenarios
     When   User enters valid Phone no and password
 
       |Phone     |Password|
-      |8433918423|hr26ec2 |
       |8130865152|hr26ec2 |
 
 
