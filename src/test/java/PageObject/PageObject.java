@@ -7,15 +7,17 @@ public class PageObject {
 
    public By LoginWithPassword = By.xpath("//*[@resource-id='loginWithPassBtn']");
 
-   public By input_email = By.xpath("//*[@resource-id='input_email']/*/android.view.View/android.widget.EditText");
+   public By AcceptCookies = By.xpath("//*[starts-with(@text,'Accept')]");
 
-   public By input_password = By.xpath("//*[@resource-id='input_password']/*/android.view.View/android.widget.EditText");
+   public By input_email = By.xpath("//*[@resource-id='input_email']");
+
+   public By input_password = By.xpath("//*[@resource-id='input_password']/*/*[@index='0']");
 
    public By sign_in_btn = By.xpath("//*[@resource-id='sign_in_btn']");
 
-   public By Master_Email = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.widget.EditText");
+   public By Master_Email = By.xpath("//*[@text='SUBMIT']/parent::*/preceding-sibling::*[@index='0']/*/*/*");
 
-   public By Master_Password = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.webkit.WebView/android.webkit.WebView/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.widget.EditText");
+   public By Master_Password = By.xpath("//*[@text='SUBMIT']/parent::*/preceding-sibling::*[@index='1']/*/*/*");
 
    public By Home_Page = By.xpath("//*[@content-desc='welcome_username']");
 
@@ -37,7 +39,7 @@ public class PageObject {
 
    public By Next_Class_Selected = By.xpath("//*[@content-desc='next_class_selected']");
 
-   public By Next_Class_date = By.xpath("//*[@text='Selected Day']");
+   public By Next_Class_date = By.xpath("//*[@content-desc='select_day']");
 
    public By Select_date_bottom_sheet = By.xpath("//*[@text='Select Day']");
 
@@ -45,7 +47,7 @@ public class PageObject {
 
    public By Bottom_Sheet_Elements = By.xpath("//*[starts-with(@content-desc,'select_')]");
 
-   public By Next_Class_Time = By.xpath("//*[@text='Selected Time']");
+   public By Next_Class_Time = By.xpath("//*[@content-desc='select_slot']");
 
    public By Class_Per_week_count = By.xpath("//*[starts-with(@content-desc,'selected_')]");
 
@@ -63,7 +65,7 @@ public class PageObject {
 
    public By Third_Class_dropdown = By.xpath("//*[@content-desc='selected_day_3rd Class']");
 
-   public By Hidden_Menu = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]");
+   public By Hidden_Menu = By.xpath("//*[@content-desc='hidden_menu']");
 
    public By Submit = By.xpath("//*[@text='SUBMIT']");
 
@@ -106,8 +108,6 @@ public class PageObject {
    public By No_Classes_Scheduled_Text = By.xpath("//*[starts-with(@content-desc,'next_class_error_info_')]");
 
    public By Schedule_classes_CTA_home = By.xpath("//*[@content-desc='paid_schedule_now_clicked']");
-
-   public By Schedule_classes_Home_Page = By.xpath("//*[@content-desc='Schedule your classes']");
 
 
 }

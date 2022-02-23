@@ -43,7 +43,7 @@ public class PageObjectDemo {
 
     public By Unlocked_Certificate_text = By.xpath("//*[@text='Hurray!! You unlocked the certificate']");
 
-    public By Multiple_Users = By.xpath("//*[@content-desc='profile_page_username']/parent::*/following-sibling::*/*/*[@index='0']");
+    public By Multiple_Users = By.xpath("//*[starts-with(@content-desc,'select_user_')]/*[@index='0']");
 
     public By Profile_Heading = By.xpath("//*[@content-desc='profile_page_username']");
 

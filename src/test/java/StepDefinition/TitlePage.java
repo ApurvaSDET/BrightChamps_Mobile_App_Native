@@ -7,6 +7,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +17,18 @@ public class TitlePage extends BaseUtil {
 
     @Given("User is at Student portal Login Page")
     public void user_is_at_student_portal() {
+
+        try {
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(PO.AcceptCookies));
+            _click(PO.AcceptCookies);
+        }
+        catch (TimeoutException e)
+        {
+            e.getMessage();
+        }
+
+
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);

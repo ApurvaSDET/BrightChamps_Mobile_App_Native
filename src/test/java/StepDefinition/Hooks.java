@@ -47,16 +47,17 @@ public class Hooks extends BaseUtil {
         System.out.println(App_ID);
     }
 
+
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pCloudy_Username", "apurva.kushwaha@brightchamps.com");
-        capabilities.setCapability("pCloudy_ApiKey", "t3652ybnsqzp64g59z7qfqkf");
-        capabilities.setCapability("pCloudy_DurationInMinutes", 15);
+        capabilities.setCapability("pCloudy_Username", "ishu.kush@gmail.com");
+        capabilities.setCapability("pCloudy_ApiKey", "rmt4p5cjj8g56wzn9gfys3kj");
+        capabilities.setCapability("pCloudy_DurationInMinutes", 60);
         capabilities.setCapability("newCommandTimeout", 600);
         capabilities.setCapability("launchTimeout", 90000);
-        capabilities.setCapability("pCloudy_DeviceFullName", "GOOGLE_Pixel2XL_Android_11.0.0_4fd7e");
-        capabilities.setCapability("platformVersion", "11.0.0");
+        capabilities.setCapability("pCloudy_DeviceFullName", "GOOGLE_Pixel2_Android_11.0.0_c2579");
+        capabilities.setCapability("platformVersion", "9.0.0");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "uiautomator2");
         capabilities.setCapability("pCloudy_ApplicationName", "app-arm64-v8a-release.apk");
@@ -85,11 +86,11 @@ public class Hooks extends BaseUtil {
         caps.setCapability("browserstack.key", "nKoiDb51xy1h9pQoTjPq");
 
         // Set URL of the application under test
-        caps.setCapability("app", App_ID);
+        caps.setCapability("app", "bs://6eedc6bc5db477dee50b16965b784b131ea98d0a");
 
         // Specify device and os_version for testing
-        caps.setCapability("device", "Google Pixel 4");
-        caps.setCapability("os_version", "10.0");
+        caps.setCapability("device", "Google Pixel 3");
+        caps.setCapability("os_version", "9.0");
 
         // Set other BrowserStack capabilities
         caps.setCapability("project", "BrightChamps");

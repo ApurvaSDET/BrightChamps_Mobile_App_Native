@@ -4,6 +4,7 @@ import com.ssts.pcloudy.Connector;
 import com.ssts.pcloudy.dto.access.UserDetailResult;
 import com.ssts.pcloudy.dto.device.MobileDevice;
 import com.ssts.pcloudy.dto.file.PDriveFileDTO;
+import com.ssts.pcloudy.dto.generic.BookingDtoResult;
 import com.ssts.pcloudy.exception.ConnectError;
 import org.apache.commons.lang.StringUtils;
 import java.io.*;
@@ -16,9 +17,12 @@ public class Test {
 
 
         Connector con = new Connector("https://device.pcloudy.com");
-        String authToken = con.authenticateUser("apurva.kushwaha@brightchamps.com", "t3652ybnsqzp64g59z7qfqkf");
+        String authToken = con.authenticateUser("ishu.kush@gmail.com", "rmt4p5cjj8g56wzn9gfys3kj");
 
         //PDriveFileDTO uploadedApp = con.uploadApp(authToken, new File("/Users//apurvakushwaha/Desktop/app-arm64-v8a-release.apk"));
+
+        //BookingDtoResult bookedDevice = con.bookDevice(authToken, 10, selectedDevice);
+
 
         //con.deleteFileFromCloud(authToken, "app-arm64-v8a-release.apk", "data");
 

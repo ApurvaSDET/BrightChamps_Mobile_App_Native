@@ -13,7 +13,7 @@ Feature: Demo User Part 1
     And    User clicks on SUBMIT CTA
 
 
-  @Regression @Demo
+  @Regression @Demo1
   Scenario: 1 #Verifying master login for demo a/c
 
     Then   User is at the Home Page
