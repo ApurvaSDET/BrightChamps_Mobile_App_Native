@@ -5,9 +5,6 @@ image: markhobson/maven-chrome:jdk-8
 
 pipelines:
   default:
-    - docker:
-        - image: appium/appium-emulator
-
     - step:
         name: Build and Test
         caches:
