@@ -32,7 +32,7 @@ Feature: Validating Profile Page
     When User clicks on X button of Hobbies
     Then Hobbies should be deleted
     And  User clicks on Save Button
-    #Then Verify if Hobbies are still deleted after Saving
+    Then Verify if Hobbies are still deleted after Saving
     When User enters new Hobbies from Dropdown
     Then New Hobbies should be entered
     When User clicks on Save Button
@@ -57,3 +57,44 @@ Feature: Validating Profile Page
     When User clicks on Save Button
     Then Profile Updated Success message should appear
     And  New DOB should be updated on Profile Page
+
+  @Regression @Profile
+  Scenario: 5 #Validating blank input on Profile Page
+
+    When User enters blank input in Student Name
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Mother Name
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Father Name
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Father Phone Number
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Father Email
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Mother Phone Number
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in Mother Email
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in City
+    And  User clicks on Save Button
+    Then Validation message should appear
+    When User enters blank input in School Name
+    And  User clicks on Save Button
+    Then Validation message should appear
+
+  @Regression @Profile
+  Scenario: 6 #Validating invalid email on Profile Page
+
+    When User enters invalid Father Email
+    And  User clicks on Save Button
+    Then Validation message for incorrect Father Email should appear
+    When User enters invalid Mother Email
+    And  User clicks on Save Button
+    Then Validation message for incorrect Mother Email should appear

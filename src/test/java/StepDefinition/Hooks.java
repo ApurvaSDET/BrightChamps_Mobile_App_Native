@@ -14,7 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import pCloudy_APIs.pCloudy_APIs_Utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -23,31 +23,23 @@ import java.util.Scanner;
 
 public class Hooks extends BaseUtil {
 
-    static ADBExecutor adbExecutor = new ADBExecutor();
-    public static String App_ID;
-
-    //@BeforeAll
+    @Before(order=0)
     public void _get_appID() throws IOException {
 
-        String url = "apurvakushwaha_ty18QO:nKoiDb51xy1h9pQoTjPq";
-        String abc = "https://api-cloud.browserstack.com/app-automate/recent_apps";
+        if(this.pCloudy_DeviceManafacturerValue == null) {
 
-        String command = "curl -u "+url+" \\\n" +
-                "-X GET "+abc;
+            if (new pCloudy_APIs_Utility()._get_active_device_list().contains("manufacturer\":\"Google")) {
+            this.pCloudy_DeviceManafacturerValue = "Google";
+            } else if (new pCloudy_APIs_Utility()._get_active_device_list().contains("manufacturer\":\"Samsung")) {
+            this.pCloudy_DeviceManafacturerValue = "Samsung";
+            } else if (new pCloudy_APIs_Utility()._get_active_device_list().contains("manufacturer\":\"Motorola")) {
+            this.pCloudy_DeviceManafacturerValue = "Motorola";
+            }
+        }
 
-        Process process = Runtime.getRuntime().exec(command);
-
-        InputStream inputStream = process.getInputStream();
-
-        Scanner s = new Scanner(inputStream).useDelimiter("\\A");
-        String result = s.hasNext() ? s.next() : "";
-
-        App_ID = "bs://"+StringUtils.substringBefore(StringUtils.substringAfter(result, "app_id\":\""), "\",");
-
-        System.out.println(App_ID);
     }
 
-
+    @Before(order=1)
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -56,8 +48,7 @@ public class Hooks extends BaseUtil {
         capabilities.setCapability("pCloudy_DurationInMinutes", 60);
         capabilities.setCapability("newCommandTimeout", 600);
         capabilities.setCapability("launchTimeout", 90000);
-        capabilities.setCapability("pCloudy_DeviceFullName", "GOOGLE_Pixel2_Android_11.0.0_c2579");
-        capabilities.setCapability("platformVersion", "9.0.0");
+        capabilities.setCapability("pCloudy_DeviceManafacturer", pCloudy_DeviceManafacturerValue);
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "uiautomator2");
         capabilities.setCapability("pCloudy_ApplicationName", "app-arm64-v8a-release.apk");
@@ -73,38 +64,7 @@ public class Hooks extends BaseUtil {
 
         URL url = new URL("https://device.pcloudy.com/appiumcloud/wd/hub");
         driver = new AppiumDriver(url, capabilities);
-        wait = new WebDriverWait(driver, 10);
-    }
-
-    @Before
-    public void App_launch_On_BrowserStackCloud() throws MalformedURLException {
-
-        DesiredCapabilities caps = new DesiredCapabilities();
-
-        // Set your access credentials
-        caps.setCapability("browserstack.user", "apurvakushwaha_ty18QO");
-        caps.setCapability("browserstack.key", "nKoiDb51xy1h9pQoTjPq");
-
-        // Set URL of the application under test
-        caps.setCapability("app", "bs://6eedc6bc5db477dee50b16965b784b131ea98d0a");
-
-        // Specify device and os_version for testing
-        caps.setCapability("device", "Google Pixel 3");
-        caps.setCapability("os_version", "9.0");
-
-        // Set other BrowserStack capabilities
-        caps.setCapability("project", "BrightChamps");
-        caps.setCapability("build", "BrightChamps_APP-TestBuild-01");
-        caps.setCapability("name", "BrightChamps_APP");
-        caps.setCapability("browserstack.networkLogs", "true");
-
-
-        // Initialise the remote AppiumDriver using BrowserStack remote URL
-        // and desired capabilities defined above
-        URL url = new URL("http://hub.browserstack.com/wd/hub");
-        driver = new AppiumDriver(url, caps);
-        wait = new WebDriverWait(driver, 20);
-
+        wait = new WebDriverWait(driver, 15);
     }
 
 

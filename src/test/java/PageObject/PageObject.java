@@ -49,9 +49,9 @@ public class PageObject {
 
    public By Next_Class_Time = By.xpath("//*[@content-desc='select_slot']");
 
-   public By Class_Per_week_count = By.xpath("//*[starts-with(@content-desc,'selected_')]");
+   public By Class_Per_week_count = By.xpath("//*[starts-with(@content-desc,'select_')]");
 
-   public By Book_Your_Class_CTA = By.xpath("//*[@text='Book Your Slot']");
+   public By Book_Your_Class_CTA = By.xpath("//*[@content-desc='button']");
 
    public By Toast_Message = By.xpath("//*[@content-desc='toast']/*[@index='1']");
 
@@ -61,9 +61,9 @@ public class PageObject {
 
    public By All_Class_Selected = By.xpath("//*[@content-desc='all_class_selected']");
 
-   public By Fourth_class_dropdown = By.xpath("//*[@content-desc='selected_day_4th Class']");
+   public By Fourth_class_dropdown = By.xpath("//*[@content-desc='select_day'][4]");
 
-   public By Third_Class_dropdown = By.xpath("//*[@content-desc='selected_day_3rd Class']");
+   public By Third_Class_dropdown = By.xpath("//*[@content-desc='select_day'][3]");
 
    public By Hidden_Menu = By.xpath("//*[@content-desc='hidden_menu']");
 

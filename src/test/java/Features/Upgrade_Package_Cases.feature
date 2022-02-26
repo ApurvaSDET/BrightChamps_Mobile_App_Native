@@ -11,7 +11,7 @@ Feature: Home Page Part 3
     When   User enters valid Phone no and password
 
       |Phone     |Password|
-      |8130865152|hr26ec2 |
+      |8726533960|hr26ec2 |
 
 
     And    User clicks on SUBMIT CTA

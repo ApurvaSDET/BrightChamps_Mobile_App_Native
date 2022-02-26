@@ -25,6 +25,7 @@ public class Upgrade_Package extends BaseUtil {
     @Given("User is at Student portal master login Page")
     public void user_is_at_student_portal_master_login() {
 
+        /*
         try {
 
             wait.until(ExpectedConditions.presenceOfElementLocated(PO.AcceptCookies));
@@ -34,7 +35,7 @@ public class Upgrade_Package extends BaseUtil {
         {
             e.getMessage();
         }
-
+*/
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);

@@ -236,6 +236,10 @@ public class Profile_Details_Screen extends BaseUtil {
             //wait for dropdown to appear
             _wait(POP.Hobbies_bottom_sheet);
             _random_options_from_dropdown(POP.Hobbies_bottom_sheet_values);
+
+            //Swiping Up to avoid clicking on SAVE CTA
+            swipeScreen(Direction.UP);
+
         }
 
     }
@@ -371,5 +375,150 @@ public class Profile_Details_Screen extends BaseUtil {
         newly_selected_dob_should_appear_on_dob_field(); //Reusing above methods
 
     }
+
+    //Scenario: 5 #Validating invalid input on Profile Page
+
+    @When("User enters blank input in Student Name")
+    public void user_enters_blank_input_in_student_name() {
+
+        _cleartext(POP.Student_Name);
+    }
+
+    @Then("Validation message should appear")
+    public void validation_message_should_appear() {
+
+        Assert.assertTrue(_is_displayed(POP.Validation_Text));
+
+    }
+
+    @When("User enters blank input in Mother Name")
+    public void user_enters_blank_input_in_mother_name() throws InterruptedException {
+
+        //Entering Student Name
+        _SendKeys(POP.Student_Name, getAlphaNumericString("Alpha",7));
+
+        //Clearing Mother Name
+        Scrolling_to_element(POP.Mother_Name);
+        _cleartext(POP.Mother_Name);
+    }
+
+    @When("User enters blank input in Father Name")
+    public void user_enters_blank_input_in_father_name() throws InterruptedException {
+
+        //Entering Mother Name
+        _SendKeys(POP.Mother_Name, getAlphaNumericString("Alpha",7));
+
+        //Clearing Father Name
+        Scrolling_to_element(POP.Father_Name);
+        _cleartext(POP.Father_Name);
+    }
+
+    @When("User enters blank input in Father Phone Number")
+    public void user_enters_blank_input_in_father_phone_number() throws InterruptedException {
+
+        //Entering Father Name
+        _SendKeys(POP.Father_Name, getAlphaNumericString("Alpha",7));
+
+        //Clearing Father Phone
+        Scrolling_to_element(POP.School_Name);
+        _cleartext(POP.Father_Phone);
+    }
+
+    @When("User enters blank input in Father Email")
+    public void user_enters_blank_input_in_father_email() {
+
+        //Entering Father Phone
+        _SendKeys(POP.Father_Phone, getAlphaNumericString("Numeric",10));
+
+        //Clearing Father Email
+        _cleartext(POP.Father_Email);
+    }
+
+    @When("User enters blank input in Mother Phone Number")
+    public void user_enters_blank_input_in_mother_phone_number() {
+
+        //Entering Father Email
+        _SendKeys(POP.Father_Email, getAlphaNumericString("Alpha",5)+"@mailinator.com");
+
+        //Clearing Father Email
+        _cleartext(POP.Mother_Phone);
+
+    }
+
+    @When("User enters blank input in Mother Email")
+    public void user_enters_blank_input_in_mother_email() {
+
+        //Entering Father Phone
+        _SendKeys(POP.Mother_Phone, getAlphaNumericString("Numeric",10));
+
+        //Clearing Father Email
+        _cleartext(POP.Mother_Email);
+
+    }
+
+    @When("User enters blank input in City")
+    public void user_enters_blank_input_in_city() {
+
+        //Entering Father Email
+        _SendKeys(POP.Mother_Email, getAlphaNumericString("Alpha",5)+"@mailinator.com");
+
+        //Clearing Father Email
+        _cleartext(POP.City);
+    }
+
+    @When("User enters blank input in School Name")
+    public void user_enters_blank_input_in_school_name() {
+
+        //Entering Father Name
+        _SendKeys(POP.City, getAlphaNumericString("Alpha",7));
+
+        //Clearing Father Phone
+        _cleartext(POP.School_Name);
+
+    }
+
+
+    //Scenario: 6 #Validating invalid email on Profile Page
+
+    @When("User enters invalid Father Email")
+    public void user_enters_invalid_father_email() throws InterruptedException {
+
+        //Clearing Father Email
+        Scrolling_to_element(POP.School_Name);
+        _cleartext(POP.Father_Email);
+
+        //Entering invalid Email
+        _SendKeys(POP.Father_Email, "value");
+
+    }
+
+    @Then("Validation message for incorrect Father Email should appear")
+    public void validation_message_for_incorrect_father_email_should_appear() {
+
+        Assert.assertEquals("Please enter correct father email id.", _get_text(POP.Validation_Text));
+
+    }
+
+    @When("User enters invalid Mother Email")
+    public void user_enters_invalid_mother_email() {
+
+        //Entering Father Email
+        _SendKeys(POP.Father_Email, getAlphaNumericString("Alpha",5)+"@mailinator.com");
+
+        //Clearing Mother Email
+        _cleartext(POP.Mother_Email);
+
+        //Entering invalid Email
+        _SendKeys(POP.Mother_Email, "Ethics");
+
+    }
+
+    @Then("Validation message for incorrect Mother Email should appear")
+    public void validation_message_for_incorrect_mother_email_should_appear() {
+
+        Assert.assertEquals("Please enter correct mother email id.", _get_text(POP.Validation_Text));
+
+    }
+
 
 }

@@ -8,6 +8,8 @@ public class PageObjectProfile {
 
     public By Personal_info = By.xpath("//*[@content-desc='personal_information_cta']");
 
+    public By Validation_Text = By.xpath("//*[starts-with(@text,'Please')]");
+
     public By Refer_Friend = By.xpath("//*[@content-desc='refer_a_friend_cta']");
 
     public By Book_Free_Trial_Friends_CTA = By.xpath("//*[@content-desc='free_trail']");

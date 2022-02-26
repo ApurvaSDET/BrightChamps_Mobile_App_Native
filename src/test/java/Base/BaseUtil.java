@@ -31,6 +31,7 @@ public class BaseUtil {
     public static Properties Pro;
     public static WebDriverWait wait;
     public static ADBExecutor adbExecutor = new ADBExecutor();
+    public static String pCloudy_DeviceManafacturerValue;
     public PageObject PO = new PageObject();
     public PageObjectDemo POD = new PageObjectDemo();
     public PageObjectProfile POP = new PageObjectProfile();

@@ -18,7 +18,7 @@ public class TitlePage extends BaseUtil {
     @Given("User is at Student portal Login Page")
     public void user_is_at_student_portal() {
 
-        try {
+     /*   try {
 
             wait.until(ExpectedConditions.presenceOfElementLocated(PO.AcceptCookies));
             _click(PO.AcceptCookies);
@@ -27,7 +27,7 @@ public class TitlePage extends BaseUtil {
         {
             e.getMessage();
         }
-
+*/
 
 
         //waiting till landing on login screen
