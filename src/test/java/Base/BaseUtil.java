@@ -16,8 +16,10 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pCloudy_APIs.pCloudy_APIs_Utility;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -544,5 +546,48 @@ public class BaseUtil {
         return sb.toString();
     }
 
+    public void pCLoudy_Device_Full_Name() throws IOException {
 
+        ArrayList<String> DeviceNames = new ArrayList<String>();
+
+        DeviceNames.add("Google_Pixel5_Android_11.0.0_21d59");
+        DeviceNames.add("GOOGLE_Pixel6_Android_12.0.0_1c082");
+        DeviceNames.add("Google_Pixel2XL_Android_11.0.0_4fd7e");
+        DeviceNames.add("Samsung_GalaxyA71_Android_11.0.0_fe4a3");
+        DeviceNames.add("Samsung_GalaxyA31_Android_11.0.0_32c0a");
+        DeviceNames.add("Samsung_GalaxyM12_Android_11.0.0_22a76");
+        DeviceNames.add("Samsung_GalaxyF12_Android_11.0.0_53b39");
+        DeviceNames.add("Oneplus_8_Android_11.0.0_c4689");
+        DeviceNames.add("Oneplus_Nord_Android_11.0.0_a1ff3");
+        DeviceNames.add("Oneplus_7Pro_Android_10.0.0_b2d65");
+        DeviceNames.add("Google_Pixel3_Android_12.0.0_a6091");
+        DeviceNames.add("Google_Pixel2_Android_11.0.0_c2579");
+        DeviceNames.add("Samsung_GalaxyS8Plus_Android_9.0.0_2e32c");
+        DeviceNames.add("Samsung_GalaxyNote8_Android_9.0.0_7db62");
+        DeviceNames.add("Samsung_GalaxyS10_Android_9.0.0_01e83");
+        DeviceNames.add("Samsung_SamsungGalaxyS9Plus_Android_10.0.0_d332a");
+        DeviceNames.add("Oneplus_7_Android_9.0.0_f3b35");
+        DeviceNames.add("Oneplus_OnePlus6_Android_10.0.0_1688c");
+
+
+        //Storing pCloudy Response in a String
+        String API_Response = new pCloudy_APIs_Utility()._get_active_device_list();
+
+
+        // Iterator to iterate the cityNames
+        Iterator iterator = DeviceNames.iterator();
+
+        while (iterator.hasNext()) {
+
+            //Storing next Element of AL in String
+            String nextDevice = iterator.next().toString();
+
+            if (API_Response.contains(nextDevice)) {
+                this.pCloudy_DeviceFullName = nextDevice;
+                break;
+            }
+
+        }
+
+    }
 }
