@@ -43,8 +43,8 @@ public class Hooks extends BaseUtil {
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pCloudy_Username", "ishu.kush@gmail.com");
-        capabilities.setCapability("pCloudy_ApiKey", "rmt4p5cjj8g56wzn9gfys3kj");
+        capabilities.setCapability("pCloudy_Username", "apurva.kushwaha@brightchamps.com");
+        capabilities.setCapability("pCloudy_ApiKey", "t3652ybnsqzp64g59z7qfqkf");
         capabilities.setCapability("pCloudy_DurationInMinutes", 60);
         capabilities.setCapability("newCommandTimeout", 600);
         capabilities.setCapability("launchTimeout", 90000);
