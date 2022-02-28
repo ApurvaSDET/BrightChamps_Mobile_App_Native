@@ -548,11 +548,10 @@ public class BaseUtil {
 
         ArrayList<String> DeviceNames = new ArrayList<String>();
 
-        DeviceNames.add("Google_Pixel5_Android_11.0.0_21d59");
         DeviceNames.add("GOOGLE_Pixel6_Android_12.0.0_1c082");
-        DeviceNames.add("Google_Pixel2XL_Android_11.0.0_4fd7e");
         DeviceNames.add("Samsung_GalaxyA71_Android_11.0.0_fe4a3");
         DeviceNames.add("Samsung_GalaxyA31_Android_11.0.0_32c0a");
+        DeviceNames.add("Google_Pixel5_Android_11.0.0_21d59");
         DeviceNames.add("Oneplus_8_Android_11.0.0_c4689");
         DeviceNames.add("Samsung_GalaxyM12_Android_11.0.0_22a76");
         DeviceNames.add("Samsung_GalaxyF12_Android_11.0.0_53b39");
