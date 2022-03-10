@@ -76,10 +76,18 @@ public class Profile_Details_Screen extends BaseUtil {
 
         //User enters Grade from dropdown
         do {
-            _click(POP.Grade);
+            if(Platform.equalsIgnoreCase("Android"))
+                _click(POP.Grade);
+            else {
+                _click(POP.Grade);
+                _click(POP.Grade);
+            }
             //wait for dropdown to appear
             _wait(POP.Grade_bottom_sheet);
-            _random_options_from_dropdown(POP.Grade_bottom_sheet_values);
+            if(Platform.equalsIgnoreCase("iOS"))
+                _random_options_from_dropdown(POP.Bottom_sheet_values);
+            else
+                _random_options_from_dropdown(POP.Bottom_sheet_values_Android);
 
         } while (AL.get(10).equals(_get_text(POP.Grade)));
 
@@ -93,7 +101,10 @@ public class Profile_Details_Screen extends BaseUtil {
             _click(POP.Gender);
             //wait for dropdown to appear
             _wait(POP.Gender_bottom_sheet);
-            _random_options_from_dropdown(POP.Gender_bottom_sheet_values);
+            if(Platform.equalsIgnoreCase("iOS"))
+                _random_options_from_dropdown(POP.Bottom_sheet_values);
+            else
+                _random_options_from_dropdown(POP.Bottom_sheet_values_Android);
 
         } while (AL.get(11).equals(_get_text(POP.Gender)));
 
@@ -118,11 +129,19 @@ public class Profile_Details_Screen extends BaseUtil {
         AL.add(_get_text(POP.Country));
 
         //User enters Country from dropdown
-        _click(POP.Country);
+        if(Platform.equalsIgnoreCase("Android"))
+            _click(POP.Country);
+        else {
+            _click(POP.Country);
+            _click(POP.Country);
+        }
 
         //wait for dropdown to appear
         _wait(POP.Country_bottom_sheet);
-        _selecting_particular_options_from_dropdown(POP.Country_bottom_sheet_values,"India | India Standard");
+        if(Platform.equalsIgnoreCase("iOS"))
+            _selecting_particular_options_from_dropdown(POP.Bottom_sheet_values,"India | India Standard");
+        else
+            _selecting_particular_options_from_dropdown(POP.Bottom_sheet_values_Android,"India | India Standard");
 
         //User clears and enters City
         Scrolling_to_element(POP.City);
@@ -130,8 +149,11 @@ public class Profile_Details_Screen extends BaseUtil {
         _SendKeys(POP.City, AL.get(8));
 
         //User clears and enters School Name
+        swipeScreen(Direction.UP);
         _cleartext(POP.School_Name);
         _SendKeys(POP.School_Name, AL.get(9));
+        if(Platform.equalsIgnoreCase("iOS"))
+            _click(POP.Country);
 
     }
 
@@ -235,7 +257,10 @@ public class Profile_Details_Screen extends BaseUtil {
 
             //wait for dropdown to appear
             _wait(POP.Hobbies_bottom_sheet);
-            _random_options_from_dropdown(POP.Hobbies_bottom_sheet_values);
+            if(Platform.equalsIgnoreCase("iOS"))
+                _random_options_from_dropdown(POP.Bottom_sheet_values);
+            else
+                _random_options_from_dropdown(POP.Bottom_sheet_values_Android);
 
             //Swiping Up to avoid clicking on SAVE CTA
             swipeScreen(Direction.UP);
@@ -308,38 +333,59 @@ public class Profile_Details_Screen extends BaseUtil {
         Random rand = new Random();
 
         //Fetching coordinates of the Day element
-        MobileElement DOB_Day = (MobileElement) driver.findElement(POP.DOB_Day_bottom_sheet);
+        MobileElement DOB_Day;
+        if (Platform.equalsIgnoreCase("Android"))
+            DOB_Day = (MobileElement) driver.findElement(POP.DOB_Day_bottom_sheet);
+        else
+            DOB_Day = (MobileElement) driver.findElement(POP.DOB_Day_bottom_sheet_iOS);
 
         int x = DOB_Day.getLocation().getX();
         int y = DOB_Day.getLocation().getY();
 
         //Scrolling randomly Day section
-        for(int i=0; i<=rand.nextInt(10)+2; i++)
-            scroll(driver,x+50, y+350, x+50,y+150);
-
-
+        for(int i=0; i<=rand.nextInt(10)+2; i++) {
+            if (Platform.equalsIgnoreCase("Android"))
+                scroll(driver, x+50, y+350, x+50, y+150);
+            else
+                scroll(driver, x+25, y+200, x+25, y+125);
+        }
 
         //Fetching coordinates of the Month element
-        MobileElement DOB_Month = (MobileElement) driver.findElement(POP.DOB_Month_bottom_sheet);
+        MobileElement DOB_Month;
+        if (Platform.equalsIgnoreCase("Android"))
+            DOB_Month = (MobileElement) driver.findElement(POP.DOB_Month_bottom_sheet);
+        else
+            DOB_Month = (MobileElement) driver.findElement(POP.DOB_Month_bottom_sheet_iOS);
 
         int x1 = DOB_Month.getLocation().getX();
         int y1 = DOB_Month.getLocation().getY();
 
         //Scrolling randomly Day section
-        for(int i=0; i<=rand.nextInt(10)+2; i++)
-            scroll(driver,x1+100, y1+350, x1+100,y1+150);
+        for(int i=0; i<=rand.nextInt(10)+2; i++) {
+            if (Platform.equalsIgnoreCase("Android"))
+                scroll(driver,x1+100, y1+350, x1+100,y1+150);
+            else
+                scroll(driver, x1+50, y1 + 200, x1+50, y1 + 125);
+        }
 
 
         //Fetching coordinates of the Year element
-        MobileElement DOB_Year = (MobileElement) driver.findElement(POP.DOB_Year_bottom_sheet);
+        MobileElement DOB_Year;
+        if (Platform.equalsIgnoreCase("Android"))
+            DOB_Year = (MobileElement) driver.findElement(POP.DOB_Year_bottom_sheet);
+        else
+            DOB_Year = (MobileElement) driver.findElement(POP.DOB_Year_bottom_sheet_iOS);
 
         int x2 = DOB_Year.getLocation().getX();
         int y2 = DOB_Year.getLocation().getY();
 
         //Scrolling randomly Day section
-        for(int i=0; i<=rand.nextInt(10)+2; i++)
-            scroll(driver,x2+70, y2+350, x2+70,y2+150);
-
+        for(int i=0; i<=rand.nextInt(10)+2; i++) {
+            if (Platform.equalsIgnoreCase("Android"))
+                scroll(driver,x2+70, y2+150, x2+70,y2+350);
+            else
+                scroll(driver, x2+40, y2+125, x2+40, y2+200);
+        }
 
     }
 
@@ -382,98 +428,16 @@ public class Profile_Details_Screen extends BaseUtil {
     public void user_enters_blank_input_in_student_name() {
 
         _cleartext(POP.Student_Name);
+
+        //Logic for dismissing keyboard
+        if(Platform.equalsIgnoreCase("iOS"))
+            _click(POP.Grade);
     }
 
     @Then("Validation message should appear")
     public void validation_message_should_appear() {
 
         Assert.assertTrue(_is_displayed(POP.Validation_Text));
-
-    }
-
-    @When("User enters blank input in Mother Name")
-    public void user_enters_blank_input_in_mother_name() throws InterruptedException {
-
-        //Entering Student Name
-        _SendKeys(POP.Student_Name, getAlphaNumericString("Alpha",7));
-
-        //Clearing Mother Name
-        Scrolling_to_element(POP.Mother_Name);
-        _cleartext(POP.Mother_Name);
-    }
-
-    @When("User enters blank input in Father Name")
-    public void user_enters_blank_input_in_father_name() throws InterruptedException {
-
-        //Entering Mother Name
-        _SendKeys(POP.Mother_Name, getAlphaNumericString("Alpha",7));
-
-        //Clearing Father Name
-        Scrolling_to_element(POP.Father_Name);
-        _cleartext(POP.Father_Name);
-    }
-
-    @When("User enters blank input in Father Phone Number")
-    public void user_enters_blank_input_in_father_phone_number() throws InterruptedException {
-
-        //Entering Father Name
-        _SendKeys(POP.Father_Name, getAlphaNumericString("Alpha",7));
-
-        //Clearing Father Phone
-        Scrolling_to_element(POP.School_Name);
-        _cleartext(POP.Father_Phone);
-    }
-
-    @When("User enters blank input in Father Email")
-    public void user_enters_blank_input_in_father_email() {
-
-        //Entering Father Phone
-        _SendKeys(POP.Father_Phone, getAlphaNumericString("Numeric",10));
-
-        //Clearing Father Email
-        _cleartext(POP.Father_Email);
-    }
-
-    @When("User enters blank input in Mother Phone Number")
-    public void user_enters_blank_input_in_mother_phone_number() {
-
-        //Entering Father Email
-        _SendKeys(POP.Father_Email, getAlphaNumericString("Alpha",5)+"@mailinator.com");
-
-        //Clearing Father Email
-        _cleartext(POP.Mother_Phone);
-
-    }
-
-    @When("User enters blank input in Mother Email")
-    public void user_enters_blank_input_in_mother_email() {
-
-        //Entering Father Phone
-        _SendKeys(POP.Mother_Phone, getAlphaNumericString("Numeric",10));
-
-        //Clearing Father Email
-        _cleartext(POP.Mother_Email);
-
-    }
-
-    @When("User enters blank input in City")
-    public void user_enters_blank_input_in_city() {
-
-        //Entering Father Email
-        _SendKeys(POP.Mother_Email, getAlphaNumericString("Alpha",5)+"@mailinator.com");
-
-        //Clearing Father Email
-        _cleartext(POP.City);
-    }
-
-    @When("User enters blank input in School Name")
-    public void user_enters_blank_input_in_school_name() {
-
-        //Entering Father Name
-        _SendKeys(POP.City, getAlphaNumericString("Alpha",7));
-
-        //Clearing Father Phone
-        _cleartext(POP.School_Name);
 
     }
 
@@ -490,11 +454,16 @@ public class Profile_Details_Screen extends BaseUtil {
         //Entering invalid Email
         _SendKeys(POP.Father_Email, "value");
 
+        //Hiding KeyPad
+        if(Platform.equalsIgnoreCase("iOS"))
+            _click(POP.Country);
+
     }
 
     @Then("Validation message for incorrect Father Email should appear")
     public void validation_message_for_incorrect_father_email_should_appear() {
 
+        _wait(POP.Validation_Text);
         Assert.assertEquals("Please enter correct father email id.", _get_text(POP.Validation_Text));
 
     }
@@ -511,12 +480,17 @@ public class Profile_Details_Screen extends BaseUtil {
         //Entering invalid Email
         _SendKeys(POP.Mother_Email, "Ethics");
 
+        //Hiding KeyPad
+        if(Platform.equalsIgnoreCase("iOS"))
+            _click(POP.Country);
+
     }
 
     @Then("Validation message for incorrect Mother Email should appear")
     public void validation_message_for_incorrect_mother_email_should_appear() {
 
-        Assert.assertEquals("Please enter correct mother email id.", _get_text(POP.Validation_Text));
+        _wait(POP.Validation_Text);
+        Assert.assertEquals("Please enter correct mother's email id.", _get_text(POP.Validation_Text));
 
     }
 

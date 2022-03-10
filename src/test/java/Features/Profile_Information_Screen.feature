@@ -26,7 +26,7 @@ Feature: Validating Profile Page
     Then Profile Updated Success message should appear
     And  Profile Page should get updated
 
-  @Regression1 @Profile
+  @Regression @Profile
   Scenario: 2 #Verifying Updating Hobbies on Profile Page
 
     When User clicks on X button of Hobbies
@@ -59,35 +59,12 @@ Feature: Validating Profile Page
     And  New DOB should be updated on Profile Page
 
   @Regression @Profile
-  Scenario: 5 #Validating blank input on Profile Page
+  Scenario: 5 #Validating blank input on Student Name field
 
     When User enters blank input in Student Name
     And  User clicks on Save Button
     Then Validation message should appear
-    When User enters blank input in Mother Name
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in Father Name
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in Father Phone Number
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in Father Email
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in Mother Phone Number
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in Mother Email
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in City
-    And  User clicks on Save Button
-    Then Validation message should appear
-    When User enters blank input in School Name
-    And  User clicks on Save Button
-    Then Validation message should appear
+
 
   @Regression @Profile
   Scenario: 6 #Validating invalid email on Profile Page

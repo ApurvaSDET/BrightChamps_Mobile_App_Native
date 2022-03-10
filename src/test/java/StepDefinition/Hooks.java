@@ -10,9 +10,11 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pCloudy_APIs.pCloudy_APIs_Utility;
 import java.io.IOException;
@@ -61,23 +63,54 @@ public class Hooks extends BaseUtil {
         wait = new WebDriverWait(driver, 15);
     }
 
+    //@Before
+    public void App_launch() throws MalformedURLException, InterruptedException {
 
-    public void App_launch() throws MalformedURLException {
-
+        //Creating DesiredCapabilities object
         DesiredCapabilities cap = new DesiredCapabilities();
 
-        cap.setCapability("deviceName", adbExecutor.getDeviceInformation("ro.product.model"));
-        cap.setCapability("udid", adbExecutor.udid());
-        cap.setCapability("platformName", adbExecutor.getDeviceInformation("net.bt.name"));
-        cap.setCapability("platformVersion", adbExecutor.getDeviceInformation("ro.build.version.release"));
-        cap.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir")+"/src/test/resources/apk/prod/app-arm64-v8a-release.apk");
-        cap.setCapability("appPackage","com.brightchamps.learner");
-        cap.setCapability("appActivity","com.brightchamps.learner.MainActivity");
-        cap.setCapability("autoGrantPermissions", true);
-        cap.setCapability("automationName","uiautomator2");
+        //Putting Condition for launching either on Android or iOS
+        if (Platform.equalsIgnoreCase("Android"))
+
+            {
+                cap.setCapability("deviceName", adbExecutor.getDeviceInformation("ro.product.model"));
+                cap.setCapability("udid", adbExecutor.udid());
+                cap.setCapability("platformName", adbExecutor.getDeviceInformation("net.bt.name"));
+                cap.setCapability("platformVersion", adbExecutor.getDeviceInformation("ro.build.version.release"));
+                cap.setCapability(MobileCapabilityType.APP, System.getProperty("user.dir") + "/src/test/resources/apk/prod/app-arm64-v8a-release.apk");
+                cap.setCapability("appPackage", "com.brightchamps.learner");
+                cap.setCapability("appActivity", "com.brightchamps.learner.MainActivity");
+                cap.setCapability("autoGrantPermissions", true);
+                cap.setCapability("automationName", "uiautomator2");
+
+            }
+
+        //Putting Condition for launching either on Android or iOS
+        if (Platform.equalsIgnoreCase("iOS"))
+
+            {
+                cap.setCapability("platformName", "iOS");
+                cap.setCapability("platformVersion", "15.3.1");
+                cap.setCapability("deviceName", "iPhone12 Mini");
+                cap.setCapability("resetOnSessionStartOnly", true);
+                cap.setCapability("automationName", "XCUITest");
+                //cap.setCapability("bundleId", "com.brightchamps.learner.ios");
+                cap.setCapability("app", "/Users/apurvakushwaha/Desktop/Learner.ipa");
+                cap.setCapability("udid", "00008101-000C50863A91001E");
+                cap.setCapability("wdaStartupRetries", "4");
+                cap.setCapability("iosInstallPause","8000" );
+                cap.setCapability("wdaStartupRetryInterval", "20000");
+            }
+
+
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         driver = new AppiumDriver(url,cap );
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 60);
+
+        //Handling Notificiation Alert in iOS
+        if (Platform.equalsIgnoreCase("iOS"))
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@name='Allow']"))).click();
+
     }
 
     @After

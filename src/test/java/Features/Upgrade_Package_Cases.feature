@@ -11,7 +11,7 @@ Feature: Home Page Part 3
     When   User enters valid Phone no and password
 
       |Phone     |Password|
-      |8726533960|hr26ec2 |
+      |8433918423|hr26ec2 |
 
 
     And    User clicks on SUBMIT CTA
@@ -56,10 +56,6 @@ Feature: Home Page Part 3
     Then   User is redirected to the mWeb
     When   User navigates back using device back button
     Then   User is at Upgrade Package Page
-    When   User taps on Buy This Plan CTA
-    Then   User is redirected to the mWeb
-    When   User navigates back using device back button
-    Then   User is at Upgrade Package Page
 
 
   @Regression @CurriculumPageBackButton
@@ -81,7 +77,7 @@ Feature: Home Page Part 3
     Then   Verify there is an Upgrade Now Card at the top of Home Page
     When   User clicks on Upgrade Now Card at the top of Home Page
     Then   User is at Upgrade Package Page
-    When   User clicks on back button of Curriculum Page
+    When   User clicks on back button of Page
     Then   User is at the Home Page
 
   @Regression @SchedulingFromHome

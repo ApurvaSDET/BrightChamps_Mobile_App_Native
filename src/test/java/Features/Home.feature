@@ -95,8 +95,40 @@ Feature: Home Page Part 1
   @Regression @Referral
   Scenario: 7 #Verifying referral card on Home Page
 
+    When    User clicks on Know More CTA of referral card
+    Then    User is at Invite & Win Screen
     When    User clicks on Book Free Trial CTA of referral card
     Then    User should be redirected to mWeb
     When    User taps device back button
     Then    User should be navigated to the same page
 
+
+  @Regression @Referral
+  Scenario: 8 #Verifying COPY LINK on Invite Screen
+
+    When  User clicks on Know More CTA of referral card
+    Then  User is at Invite & Win Screen
+    When  User taps on Copy Link button
+    Then  Share bottom sheet should open
+    When  User dismiss Share bottom sheet at OS level
+    Then  Share bottom sheet should be dismissed
+    #And   Toast message should appear
+
+
+  @Regression @Referral
+  Scenario: 9 #Verifying Know More CTA on Invite Screen
+
+    When  User clicks on Know More CTA of referral card
+    Then  User is at Invite & Win Screen
+    When  User clicks on Know More CTA of referral card
+    Then  User is at Policy Screen
+    When  User clicks on back button of Page
+    Then  User is at Invite & Win Screen
+
+  @Regression @Referral
+  Scenario: 10 #Verifying Leaderboard Screen
+
+    When  User clicks on Know More CTA of referral card
+    Then  User is at Invite & Win Screen
+    When  User clicks on Leaderboard link
+    Then  User is at Leaderboard Screen

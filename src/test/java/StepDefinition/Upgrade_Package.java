@@ -1,6 +1,7 @@
 package StepDefinition;
 
 import Base.BaseUtil;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import io.cucumber.datatable.DataTable;
@@ -25,31 +26,26 @@ public class Upgrade_Package extends BaseUtil {
     @Given("User is at Student portal master login Page")
     public void user_is_at_student_portal_master_login() {
 
-        /*
-        try {
-
-            wait.until(ExpectedConditions.presenceOfElementLocated(PO.AcceptCookies));
-            _click(PO.AcceptCookies);
-        }
-        catch (TimeoutException e)
-        {
-            e.getMessage();
-        }
-*/
-
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
 
-        //Logic to land on Master login Page
-        while(!_is_displayed(PO.Submit))
-        {
-            _click(PO.Hidden_Menu);
-            if(_is_displayed(PO.Submit))
-                break;
+        //*******************Logic to land on Master login Page*************************
+
+        //Fetching coordinates of the Day element
+        MobileElement Hidden_menu = (MobileElement) driver.findElement(PO.Hidden_Menu);
+
+        int x = Hidden_menu.getLocation().getX();
+        int y = Hidden_menu.getLocation().getY();
+
+        //Scrolling randomly Day section
+        for(int i=0; i<=7; i++) {
+            TouchAction touchAction = new TouchAction(driver);
+            touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
         }
 
         //Asserting the Student Home Page
         Assert.assertTrue(_is_displayed(PO.Submit));
+
     }
 
 
@@ -146,7 +142,8 @@ public class Upgrade_Package extends BaseUtil {
     @When("User navigates back using device back button")
     public void user_navigates_back_using_device_back_button() {
 
-        driver.navigate().back();
+        //Navigating back to app
+        _Navigate_BacktoApp();
     }
 
     @When("User taps on Buy This Plan CTA")
@@ -161,7 +158,7 @@ public class Upgrade_Package extends BaseUtil {
 
     //Scenario: 3 #Verifying back button of Curriculum Page
 
-    @When("User clicks on back button of Curriculum Page")
+    @When("User clicks on back button of Page")
     public void user_clicks_on_back_button_of_curriculum_page() {
 
         _click(PO.Page_back_button);

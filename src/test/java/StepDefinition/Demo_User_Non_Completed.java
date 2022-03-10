@@ -65,7 +65,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
         _click(POD.Reschedule_Reason);
         _wait(POD.Select_Reason_sheet);
 
-        _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+        _random_options_from_dropdown(PO.Bottom_Sheet_Elements_reason);
 
 
     }
@@ -113,7 +113,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
         _click(PO.Next_Class_date);
         _wait(PO.Select_date_bottom_sheet);
 
-        _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+        _random_options_from_dropdown(PO.Bottom_Sheet_Elements_day);
 
         _wait(PO.Book_Your_Class_CTA);
 
@@ -126,7 +126,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
         _click(PO.Next_Class_Time);
         _wait(PO.Select_time_bottom_sheet);
 
-        _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+        _random_options_from_dropdown(PO.Bottom_Sheet_Elements_time);
 
         _wait(PO.Book_Your_Class_CTA);
 
@@ -145,6 +145,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     public void verify_locked_certificate_on_home_page_is_visible() throws InterruptedException {
 
         Scrolling_to_element(POD.Demo_Certificate);
+        swipeScreen(Direction.UP);
         Assert.assertTrue(_is_displayed(POD.Demo_Certificate));
 
     }
@@ -174,19 +175,43 @@ public class Demo_User_Non_Completed extends BaseUtil {
     public void verify_user_should_be_able_to_successfully_play_and_close_all_the_videos() {
 
         //Logic to Click on each videos till last available videos
-        while(!_is_displayed(POD.Next_Video_button_disabled)) {
+        if (Platform.equalsIgnoreCase("Android"))
+        {
+            while(!_is_displayed(POD.Next_Video_button_disabled)) {
 
-            //CLicking on each Video Card
-            _click(POD.Video_Card_Container);
+                //CLicking on each Video Card
+                _click(POD.Video_Card_Container_Android);
 
-            //Waiting till another container with 'X' icon in it is available
-            _wait(POD.X_button_Video_Container);
+                //Waiting till another container with 'X' icon in it is available
+                _wait(POD.X_button_Video_Container);
 
-            //Clicking on 'X' icon to close the running video
-            _click(POD.X_button_Video_Container);
+                //Clicking on 'X' icon to close the running video
+                _click(POD.X_button_Video_Container);
 
-            //Clicking on Next Button
-            _click(POD.Next_Video_button);
+                //Clicking on Next Button
+                _click(POD.Next_Video_button);
+            }
+
+        }
+
+        else
+        {
+
+                while(!_is_displayed(POD.Next_Video_button_disabled)) {
+
+                    //CLicking on each Video Card
+                    _click(POD.Video_Card_Container_iOS);
+
+                    //Waiting till another container with 'X' icon in it is available
+                    _wait(POD.X_button_Video_Container);
+
+                    //Clicking on 'X' icon to close the running video
+                    _click(POD.X_button_Video_Container);
+
+                    //Clicking on Next Button
+                    _click(POD.Next_Video_button);
+
+                }
 
         }
 

@@ -6,12 +6,14 @@ import PageObject.PageObjectDemo;
 import PageObject.PageObjectProfile;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.remote.HideKeyboardStrategy;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pCloudy_APIs.pCloudy_APIs_Utility;
@@ -30,15 +32,44 @@ public class BaseUtil {
     public static AppiumDriver driver;
     public static Properties Pro;
     public static WebDriverWait wait;
-    public static ADBExecutor adbExecutor = new ADBExecutor();
+    public static ADBExecutor adbExecutor;
     public static String pCloudy_DeviceFullName;
-    public PageObject PO = new PageObject();
-    public PageObjectDemo POD = new PageObjectDemo();
-    public PageObjectProfile POP = new PageObjectProfile();
+    public static String Platform;
+    public static String attributeID;
+    public static String attributeText;
+    public PageObject PO;
+    public PageObjectDemo POD;
+    public PageObjectProfile POP;
+
+
+
+    public BaseUtil() {
+
+        //initializing static variables declared above
+         adbExecutor = new ADBExecutor();
+         Platform = valueForTheGivenKey("Platform_Name");
+         PO = new PageObject();
+         POD = new PageObjectDemo();
+         POP = new PageObjectProfile();
+
+        //initializing static attributes declared above
+        if (Platform.equalsIgnoreCase("Android"))
+        {
+            attributeID = "content-desc";
+            attributeText = "text";
+        }
+
+        if (Platform.equalsIgnoreCase("iOS"))
+        {
+            attributeID = "name";
+            attributeText = "label";
+        }
+
+    }
 
     public static String valueForTheGivenKey(String name) {
 
-        File file = new File(System.getProperty("user.dir")+"/src/test/resources/Element_Locators_Properties_file/Android_locator.properties");
+        File file = new File(System.getProperty("user.dir")+"/src/test/resources/Element_Locators_Properties_file/Parameters.properties");
         FileInputStream fis;
         try {
             fis = new FileInputStream(file);
@@ -208,7 +239,12 @@ public class BaseUtil {
         String text = null;
 
         try {
-            text = driver.findElement(value).getText();
+
+            if (Platform.equalsIgnoreCase("Android"))
+                text = driver.findElement(value).getText();
+            else {
+                text = driver.findElement(value).getAttribute("value");
+            }
         }
         catch (NoSuchElementException | StaleElementReferenceException e)
         {
@@ -227,9 +263,10 @@ public class BaseUtil {
 
         try
         {
+            Thread.sleep(500);
             return driver.findElement(xpath).isDisplayed();
         }
-        catch (NoSuchElementException | StaleElementReferenceException err)
+        catch (NoSuchElementException | StaleElementReferenceException | InterruptedException err)
         {
             return err.getMessage().contains("stale element reference");
         }
@@ -245,7 +282,24 @@ public class BaseUtil {
 
     }
 
+    public static void _Navigate_BacktoApp(){
+
+        if (Platform.equalsIgnoreCase("Android"))
+        {
+            driver.hideKeyboard();
+            driver.navigate().back();
+        }
+
+        if (Platform.equalsIgnoreCase("iOS"))
+            driver.activateApp("com.brightchamps.learner.ios");
+
+    }
+
+
     public void Scrolling_to_element(By locator) throws InterruptedException {
+
+        //Getting screen size to scroll accordingly
+        Dimension windowSize = driver.manage().window().getSize();
 
         //Timestamp before method execution
         int beforeTime =  _CurrentTimestamp();
@@ -255,7 +309,7 @@ public class BaseUtil {
         while(!_is_displayed(locator))
 
         {
-            scroll(driver,500, 1150, 500,550);
+            scroll(driver,windowSize.width/2, windowSize.height/2, windowSize.width/2,windowSize.height/4);
             if (_CurrentTimestamp() >= beforeTime+2)
                 break;
 
@@ -437,17 +491,26 @@ public class BaseUtil {
         for (WebElement ele : dropdown_menu) {
 
             // Here we will verify if link (item) is equal to particular value
-            if (ele.getAttribute("text").contains(value_from_dropdown)) {
+            if (Platform.equalsIgnoreCase("Android")) {
+                if (ele.getAttribute("text").contains(value_from_dropdown)) {
 
-                // if yes then click on link (item)
-                ele.click();
+                    // if yes then click on link (item)
+                    ele.click();
+                    // break the loop or come out of loop
+                    break;
+                }
+            }
+            else
+            {
+                if (ele.getAttribute("value").contains(value_from_dropdown)) {
 
-                // break the loop or come out of loop
-                break;
-
+                    // if yes then click on link (item)
+                    ele.click();
+                    // break the loop or come out of loop
+                    break;
+                }
             }
         }
-
     }
 
     public static int _get_WebElements_size(By value) {

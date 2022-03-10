@@ -50,7 +50,7 @@ public class Curriculum extends BaseUtil {
             _waitAbsence(PO.SESSION_BOOKLET_Link);
 
             //Navigating back to the app from mWeb
-            driver.navigate().back();
+            _Navigate_BacktoApp();
 
             //Asserting if landed on Completed Class details screen
             _wait(PO.SESSION_BOOKLET_Link);
@@ -90,7 +90,7 @@ public class Curriculum extends BaseUtil {
             _waitAbsence(PO.Assignment_Link);
 
             //Navigating back to the app from mWeb
-            driver.navigate().back();
+            _Navigate_BacktoApp();
 
             //Asserting if landed on Completed Class details screen
             _wait(PO.Assignment_Link);

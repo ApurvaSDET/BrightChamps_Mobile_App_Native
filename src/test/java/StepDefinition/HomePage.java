@@ -2,13 +2,11 @@ package StepDefinition;
 
 import Base.BaseUtil;
 import io.appium.java_client.MobileElement;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -72,14 +70,14 @@ public class HomePage extends BaseUtil {
         _click(PO.Next_Class_date);
         _wait(PO.Select_date_bottom_sheet);
 
-        _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+        _random_options_from_dropdown(PO.Bottom_Sheet_Elements_day);
 
         _wait(PO.Book_Your_Class_CTA);
 
         _click(PO.Next_Class_Time);
         _wait(PO.Select_time_bottom_sheet);
 
-        _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+        _random_options_from_dropdown(PO.Bottom_Sheet_Elements_time);
 
     }
 
@@ -127,12 +125,22 @@ public class HomePage extends BaseUtil {
         Scrolling_to_element(PO.Book_Your_Class_CTA);
 
         try {
-            wait.until(ExpectedConditions.presenceOfElementLocated(PO.Fourth_class_dropdown));
+
+            if (Platform.equalsIgnoreCase("Android"))
+                wait.until(ExpectedConditions.presenceOfElementLocated(PO.Fourth_class_dropdown));
+            else
+                wait.until(ExpectedConditions.presenceOfElementLocated(PO.Fourth_class_dropdown_ios));
+
             Assert.fail();
         }
         catch (TimeoutException e)
         {
-            Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown));
+            if (Platform.equalsIgnoreCase("Android"))
+                Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown));
+            else
+                Assert.assertTrue(driver.findElement(By.xpath("//*[@name='3rd Class']")).isDisplayed());
+                //Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown_ios));
+
         }
 
     }
@@ -184,8 +192,16 @@ public class HomePage extends BaseUtil {
             ele.click();
 
             //Selecting any option from the available date/time
-            _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements, 5);
-            _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+            if (Platform.equalsIgnoreCase("Android")) {
+                _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements_Android, 5);
+                _random_options_from_dropdown(PO.Bottom_Sheet_Elements_Android);
+            }
+            else
+            {
+                _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements, 5);
+                _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
+            }
+
             _wait(PO.Book_Your_Class_CTA);
         }
 
@@ -256,6 +272,23 @@ public class HomePage extends BaseUtil {
 
     //Scenario: 7 #Verifying referral card on Home Page
 
+    @When("User clicks on Know More CTA of referral card")
+    public void user_clicks_on_know_more_cta_of_referral_card() throws InterruptedException {
+
+
+        Scrolling_to_element(PO.Know_More_CTA);
+        _click(PO.Know_More_CTA);
+
+    }
+
+    @Then("User is at Invite & Win Screen")
+    public void User_at_Invite_Win_Screen() throws InterruptedException {
+
+        _wait(PO.Leaderboard_link);
+        Assert.assertEquals("Invite & Win", _get_text(PO.Page_Title));
+
+    }
+
     @When("User clicks on Book Free Trial CTA of referral card")
     public void user_clicks_on_book_free_trial_cta_of_referral_card() throws InterruptedException {
 
@@ -275,8 +308,8 @@ public class HomePage extends BaseUtil {
     @When("User taps device back button")
     public void User_taps_device_back_button() {
 
-        driver.hideKeyboard();
-        driver.navigate().back();
+        //Reusing method to Navigate back to app
+        _Navigate_BacktoApp();
 
     }
 
@@ -287,5 +320,75 @@ public class HomePage extends BaseUtil {
         Assert.assertTrue(_is_displayed(PO.Book_Free_Trial_CTA));
 
     }
+
+
+    //Scenario: 8 #Verifying COPY LINK on Invite Screen
+
+    @When("User taps on Copy Link button")
+    public void user_taps_on_share_link_button() {
+
+        _click(POP.Share_Link);
+
+    }
+
+    @Then("Share bottom sheet should open")
+    public void share_bottom_sheet_should_open() {
+
+        _waitAbsence(POP.Share_Link);
+        Assert.assertFalse(_is_displayed(POP.Share_Link));
+
+    }
+
+    @Then("User dismiss Share bottom sheet at OS level")
+    public void User_dismiss_Share_bottom_sheet_at_OS_level() {
+
+        driver.navigate().back();
+
+    }
+
+    @Then("Share bottom sheet should be dismissed")
+    public void share_bottom_sheet_should_be_dismissed() {
+
+        _wait(POP.Share_Link);
+        Assert.assertTrue(_is_displayed(POP.Share_Link));
+    }
+
+    @And("Toast message should appear")
+    public void toast_message_should_appear() {
+
+        _wait(PO.Native_Toast_Message);
+    }
+
+
+
+    //Scenario: 9 #Verifying Know More CTA on Invite Screen
+
+    @Then("User is at Policy Screen")
+    public void User_is_at_Policy_Screen() throws InterruptedException {
+
+        Thread.sleep(1000);
+        Assert.assertEquals("Policy", _get_text(PO.Page_Title));
+
+    }
+
+
+    //Scenario: 10 #Verifying Leaderboard Screen
+
+    @When("User clicks on Leaderboard link")
+    public void User_clicks_on_Leaderboard_link() {
+
+        _wait(PO.Leaderboard_link);
+        _click(PO.Leaderboard_link);
+
+    }
+
+    @Then("User is at Leaderboard Screen")
+    public void User_is_at_Leaderboard_Screen() {
+
+        _wait(PO.Leaderboard_Page);
+        Assert.assertTrue(_is_displayed(PO.Leaderboard_Page));
+
+    }
+
 
 }
