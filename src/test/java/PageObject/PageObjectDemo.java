@@ -20,6 +20,8 @@ public class PageObjectDemo {
 
     public By Start_Creating = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
 
+    public By Start_Creating_CTA_Visibility = By.xpath("//*[@"+BaseUtil.attributeText+"='Join our community Facebook']");
+
     public By Upgrade_Package_Bottom_Tab = By.xpath("//*[@"+BaseUtil.attributeID+"='demoCurriculum']");
 
     public By Contact_Us = By.xpath("//*[@"+BaseUtil.attributeID+"='contact_us_cta']");

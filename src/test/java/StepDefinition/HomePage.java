@@ -138,7 +138,7 @@ public class HomePage extends BaseUtil {
             if (Platform.equalsIgnoreCase("Android"))
                 Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown));
             else
-                Assert.assertTrue(driver.findElement(By.xpath("//*[@name='3rd Class']")).isDisplayed());
+                Assert.assertTrue(driver.findElement(PO.Third_Class_dropdown_ios).isDisplayed());
                 //Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown_ios));
 
         }

@@ -167,7 +167,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("When User scrolls down to the Awesome projects cards")
     public void when_user_scrolls_down_to_the_awesome_projects_cards() throws InterruptedException {
 
-        Scrolling_to_element(POD.Start_Creating);
+        Scrolling_to_element(POD.Start_Creating_CTA_Visibility);
 
     }
 
@@ -223,7 +223,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("User clicks on Start Creating CTA")
     public void user_clicks_on_start_creating_cta() throws InterruptedException {
 
-        Scrolling_to_element(POD.Start_Creating);
+        Scrolling_to_element(POD.Start_Creating_CTA_Visibility);
         _click(POD.Start_Creating);
 
     }

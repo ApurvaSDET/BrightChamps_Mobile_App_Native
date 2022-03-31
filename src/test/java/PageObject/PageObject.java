@@ -7,11 +7,33 @@ public class PageObject {
 
    public By LoginWithPassword = By.xpath("//*[@"+BaseUtil.attributeID+"='loginType_phoneNum_selected']");
 
+   public By LoginWithOTP_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
+
    public By input_email = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Email Id']");
 
    public By input_password = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Password']");
 
+   public By Enter_Mobile_No = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Mobile Number']");
+
+   public By Enter_Mobile_No_clear = By.xpath("//*[@"+BaseUtil.attributeText+"='123']");
+
+   public By Verify_OTP_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='verify_otp']");
+
+   public By Resend_OTP = By.xpath("//*[@"+BaseUtil.attributeID+"='resend_otp']");
+
+   public By Enter_OTP = By.xpath("//*[starts-with(@"+BaseUtil.attributeText+",'Otp has been sent to this mobile number')]/following-sibling::*");
+
    public By sign_in_btn = By.xpath("//*[@"+BaseUtil.attributeID+"='button'][2]");
+
+   public By forgot_password = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
+
+   public By Reset_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='reset_password']");
+
+   public By Book_Free_Trial_Class_Bottom_Sheet = By.xpath("//*[@"+BaseUtil.attributeText+"='Begin Your First Class Today']/following-sibling::*[@"+BaseUtil.attributeID+"='button']");
+
+   public By Book_Free_Trial_Class_Now_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='book_free_trial_class']");
+
+   public By Unregistered_bottom_sheet = By.xpath("//*[@"+BaseUtil.attributeText+"='User is not registered! No Worries!']");
 
    public By Master_Email = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Mobile Number']");
 
@@ -48,8 +70,6 @@ public class PageObject {
    public By Bottom_Sheet_Elements_day = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'select_day_')]");
 
    public By Bottom_Sheet_Elements_time = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'select_slot_')]");
-
-   public By Bottom_Sheet_Elements_time_Paid = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'select_time_')]");
 
    public By Bottom_Sheet_Elements_reason = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'select_reason_')]");
 

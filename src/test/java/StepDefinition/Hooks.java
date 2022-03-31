@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 public class Hooks extends BaseUtil {
 
-    @Before(order=0)
+    //@Before(order=0)
     public void _get_appID() throws IOException {
 
         if(this.pCloudy_DeviceFullName == null) {
@@ -35,7 +35,7 @@ public class Hooks extends BaseUtil {
 
     }
 
-    @Before(order=1)
+    //@Before(order=1)
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -63,7 +63,7 @@ public class Hooks extends BaseUtil {
         wait = new WebDriverWait(driver, 15);
     }
 
-    //@Before
+    @Before
     public void App_launch() throws MalformedURLException, InterruptedException {
 
         //Creating DesiredCapabilities object
@@ -94,8 +94,8 @@ public class Hooks extends BaseUtil {
                 cap.setCapability("deviceName", "iPhone12 Mini");
                 cap.setCapability("resetOnSessionStartOnly", true);
                 cap.setCapability("automationName", "XCUITest");
-                //cap.setCapability("bundleId", "com.brightchamps.learner.ios");
-                cap.setCapability("app", "/Users/apurvakushwaha/Desktop/Learner.ipa");
+                cap.setCapability("bundleId", "com.brightchamps.learner.ios");
+                //cap.setCapability("app", "/Users/apurvakushwaha/Desktop/Learner.ipa");
                 cap.setCapability("udid", "00008101-000C50863A91001E");
                 cap.setCapability("wdaStartupRetries", "4");
                 cap.setCapability("iosInstallPause","8000" );
@@ -108,8 +108,8 @@ public class Hooks extends BaseUtil {
         wait = new WebDriverWait(driver, 60);
 
         //Handling Notificiation Alert in iOS
-        if (Platform.equalsIgnoreCase("iOS"))
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@name='Allow']"))).click();
+        //if (Platform.equalsIgnoreCase("iOS"))
+            //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@name='Allow']"))).click();
 
     }
 

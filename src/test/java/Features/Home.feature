@@ -4,7 +4,7 @@ Feature: Home Page Part 1
   Background: User is Logged In
 
     Given  User is at Student portal Login Page
-    When   User clicks on 'Login with Password' CTA
+    When   User clicks on 'Login Via Email ID' CTA
     Then   User is at 'Login with Password' screen
     When   User enters valid email and password
 
@@ -12,7 +12,7 @@ Feature: Home Page Part 1
       |apurva.kushwaha@mailinator.com|qwerty  |
       |prathyusha.m@brightchamps.com |prat2021|
 
-    And    User clicks on Sign-in CTA
+    And    User clicks on 'Login with Password' CTA
     Then   User is at the Home Page
 
 
