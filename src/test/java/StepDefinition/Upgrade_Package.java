@@ -43,8 +43,9 @@ public class Upgrade_Package extends BaseUtil {
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
 */
         //Clicking Hidden Menu 4 times to get to Master login Screen
-        Thread.sleep(3000);
-        for(int i=0; i<=7; i++)
+        Thread.sleep(2000);
+        for(int i=0; i<=4; i++)
+            Thread.sleep(250);
             _click(PO.Hidden_Menu);
 
         //Asserting the Student Home Page
