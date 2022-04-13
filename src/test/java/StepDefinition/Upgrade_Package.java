@@ -24,13 +24,13 @@ public class Upgrade_Package extends BaseUtil {
     HomePage obj;
 
     @Given("User is at Student portal master login Page")
-    public void user_is_at_student_portal_master_login() throws InterruptedException {
+    public void user_is_at_student_portal_master_login() {
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
 
         //*******************Logic to land on Master login Page*************************
-
+/*
         //Fetching coordinates of the Hidden element
         MobileElement Hidden_menu = (MobileElement) driver.findElement(PO.Hidden_Menu);
 
@@ -39,10 +39,12 @@ public class Upgrade_Package extends BaseUtil {
 
         //Scrolling randomly Day section
         TouchAction touchAction = new TouchAction(driver);
-        for(int i=0; i<=7; i++) {
-            Thread.sleep(1000);
+        for(int i=0; i<=7; i++)
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
-        }
+*/
+        //Clicking Hidden Menu 4 times to get to Master login Screen
+        for(int i=0; i<=4; i++)
+            _click(PO.Hidden_Menu);
 
         //Asserting the Student Home Page
         Assert.assertTrue(_is_displayed(PO.Submit));
