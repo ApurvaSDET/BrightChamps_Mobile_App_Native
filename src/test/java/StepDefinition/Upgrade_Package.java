@@ -24,7 +24,7 @@ public class Upgrade_Package extends BaseUtil {
     HomePage obj;
 
     @Given("User is at Student portal master login Page")
-    public void user_is_at_student_portal_master_login() {
+    public void user_is_at_student_portal_master_login() throws InterruptedException {
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
@@ -43,6 +43,7 @@ public class Upgrade_Package extends BaseUtil {
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
 */
         //Clicking Hidden Menu 4 times to get to Master login Screen
+        Thread.sleep(3000);
         for(int i=0; i<=4; i++)
             _click(PO.Hidden_Menu);
 
