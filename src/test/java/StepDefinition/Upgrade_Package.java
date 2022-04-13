@@ -44,7 +44,7 @@ public class Upgrade_Package extends BaseUtil {
 */
         //Clicking Hidden Menu 4 times to get to Master login Screen
         Thread.sleep(3000);
-        for(int i=0; i<=4; i++)
+        for(int i=0; i<=7; i++)
             _click(PO.Hidden_Menu);
 
         //Asserting the Student Home Page
