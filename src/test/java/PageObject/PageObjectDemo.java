@@ -14,9 +14,9 @@ public class PageObjectDemo {
 
     public By Demo_Certificate = By.xpath("//*[@"+BaseUtil.attributeID+"='demo_not_completed_certif_image']");
 
-    public By Locked_icon_on_Demo_Certificate = By.xpath("//*[@"+BaseUtil.attributeID+"='lock_icon']");
+    public By Locked_icon_on_Demo_Certificate = By.xpath("//*[@"+BaseUtil.attributeID+"='demo_not_completed_certif_image']/following-sibling::*/*");
 
-    public By Download_certificate_CTA = By.xpath("//*[@"+BaseUtil.attributeText+"='Download Now']");
+    public By Download_certificate_icon = By.xpath("//*[@"+BaseUtil.attributeText+"='Talent Discovery Certificate']/following-sibling::*");
 
     public By Start_Creating = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
 

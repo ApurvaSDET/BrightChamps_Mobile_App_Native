@@ -33,12 +33,12 @@ public class Demo_User_Completed extends BaseUtil {
 
     //Scenario: 3 #Verifying unlocked Certificate can be downloaded
 
-    @When("User taps on Download CTA")
-    public void user_taps_on_download_cta() throws InterruptedException {
+    @When("User taps on Download icon")
+    public void user_taps_on_download_icon() throws InterruptedException {
 
         //Tapping on Download CTA
-        Scrolling_to_element(POD.Download_certificate_CTA);
-        _click(POD.Download_certificate_CTA);
+        Scrolling_to_element(POD.Download_certificate_icon);
+        _click(POD.Download_certificate_icon);
 
     }
 
@@ -46,7 +46,7 @@ public class Demo_User_Completed extends BaseUtil {
     public void verify_certificate_can_be_downloaded() {
 
         //Waiting till home page is invisible
-        _waitAbsence(POD.Download_certificate_CTA);
+        _waitAbsence(POD.Download_certificate_icon);
     }
 
     //Scenario: 4 #Verifying Upgrade Your Plan Section on Home Page

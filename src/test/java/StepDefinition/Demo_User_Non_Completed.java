@@ -157,7 +157,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
         Assert.assertTrue(_is_displayed(POD.Locked_icon_on_Demo_Certificate));
 
         //validating Download Now CTA
-        Assert.assertFalse(_is_displayed(POD.Download_certificate_CTA));
+        Assert.assertFalse(_is_displayed(POD.Download_certificate_icon));
 
 
     }

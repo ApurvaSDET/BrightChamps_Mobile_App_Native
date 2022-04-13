@@ -28,7 +28,7 @@ Feature: Demo User Part 2
   @Regression @Demo
   Scenario: 3 #Verifying unlocked Certificate can be downloaded
 
-    When  User taps on Download CTA
+    When  User taps on Download icon
     Then  Verify Certificate can be downloaded
 
   @Regression @Demo

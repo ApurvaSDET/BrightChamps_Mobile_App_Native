@@ -32,6 +32,7 @@ Feature: Validating Profile Page
     When User clicks on X button of Hobbies
     Then Hobbies should be deleted
     And  User clicks on Save Button
+    Then Profile Updated Success message should appear
     Then Verify if Hobbies are still deleted after Saving
     When User enters new Hobbies from Dropdown
     Then New Hobbies should be entered

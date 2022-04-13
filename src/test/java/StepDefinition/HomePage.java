@@ -153,7 +153,7 @@ public class HomePage extends BaseUtil {
     }
 
     @Then("User should see the option to select date amd time based on number of classes selected")
-    public void user_should_see_the_option_to_select_date_amd_time_based_on_number_of_classes_selected() {
+    public void user_should_see_the_option_to_select_date_amd_time_based_on_number_of_classes_selected() throws InterruptedException {
 
         //Fetching list of WebElements
         List<MobileElement> dropdown_menu = driver.findElements(PO.Number_of_Classes);
@@ -162,11 +162,15 @@ public class HomePage extends BaseUtil {
         ArrayList<Integer> al = new ArrayList();
 
         //Using enhanced for loop to get the elements
+        int count =0;
         for (MobileElement ele : dropdown_menu)
 
         {
+            count++;
             ele.click();
-            swipeScreen(Direction.UP);
+            if(count!=4)
+                Scrolling_to_element(PO.Book_Your_Class_CTA); //Scrolling till Element is visible
+
             al.add(_get_WebElements_size(PO.Class_Per_week_count));
 
         }
@@ -180,7 +184,7 @@ public class HomePage extends BaseUtil {
     }
 
     @When("User selected all four classes date and time")
-    public void user_selected_all_four_classes_date_and_time() {
+    public void user_selected_all_four_classes_date_and_time() throws InterruptedException {
 
         //Fetching list of WebElements
         List<WebElement> dropdown_menu = driver.findElements(PO.Class_Per_week_count);
@@ -202,6 +206,8 @@ public class HomePage extends BaseUtil {
                 _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
             }
 
+            //Scrolling till Element is visible
+            Scrolling_to_element(PO.Book_Your_Class_CTA);
             _wait(PO.Book_Your_Class_CTA);
         }
 

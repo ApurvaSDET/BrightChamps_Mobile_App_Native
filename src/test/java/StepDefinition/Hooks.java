@@ -25,7 +25,7 @@ import java.util.Scanner;
 
 public class Hooks extends BaseUtil {
 
-    //@Before(order=0)
+    @Before(order=0)
     public void _get_appID() throws IOException {
 
         if(this.pCloudy_DeviceFullName == null) {
@@ -35,12 +35,12 @@ public class Hooks extends BaseUtil {
 
     }
 
-    //@Before(order=1)
+    @Before(order=1)
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pCloudy_Username", "apurva.kushwaha@brightchamps.com");
-        capabilities.setCapability("pCloudy_ApiKey", "t3652ybnsqzp64g59z7qfqkf");
+        capabilities.setCapability("pCloudy_Username", System.getenv("pCloudy_Username"));
+        capabilities.setCapability("pCloudy_ApiKey", System.getenv("pCloudy_ApiKey"));
         capabilities.setCapability("pCloudy_DurationInMinutes", 60);
         capabilities.setCapability("newCommandTimeout", 120);
         capabilities.setCapability("launchTimeout", 600);
@@ -63,7 +63,7 @@ public class Hooks extends BaseUtil {
         wait = new WebDriverWait(driver, 15);
     }
 
-    @Before
+    //@Before
     public void App_launch() throws MalformedURLException, InterruptedException {
 
         //Creating DesiredCapabilities object
@@ -105,7 +105,7 @@ public class Hooks extends BaseUtil {
 
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         driver = new AppiumDriver(url,cap );
-        wait = new WebDriverWait(driver, 60);
+        wait = new WebDriverWait(driver, 30);
 
         //Handling Notificiation Alert in iOS
         //if (Platform.equalsIgnoreCase("iOS"))

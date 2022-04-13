@@ -90,6 +90,7 @@ public class TitlePage extends BaseUtil {
     @When("User clicks logout button")
     public void user_clicks_logout_button() {
 
+        swipeScreen(Direction.UP);
         _click(PO.logout_btn);
 
     }

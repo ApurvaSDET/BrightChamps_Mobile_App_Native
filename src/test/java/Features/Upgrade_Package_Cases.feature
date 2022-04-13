@@ -5,7 +5,7 @@ Feature: Home Page Part 3
 
     Given  User is at Student portal master login Page
 
-  @Regression @UpgradePackage
+  @Regression1 @UpgradePackage
   Scenario: 1 #Verifying Upgrade Package Card in case of 5 or less classes are left
 
     When   User enters valid Phone no and password
@@ -39,6 +39,7 @@ Feature: Home Page Part 3
     When   User enters valid Phone no and password
 
       |Phone     |Password|
+      |96646771  |hr26ec2 |
       |503670250 |hr26ec2 |
     #This is prod user
 
@@ -64,6 +65,7 @@ Feature: Home Page Part 3
     When   User enters valid Phone no and password
 
       |Phone     |Password|
+      |96646771  |hr26ec2 |
       |503670250 |hr26ec2 |
     #This is prod user
 
