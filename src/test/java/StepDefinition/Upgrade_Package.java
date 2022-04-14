@@ -28,11 +28,11 @@ public class Upgrade_Package extends BaseUtil {
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
-        Thread.sleep(2000);
+        _wait(PO.Hidden_Menu);
 
         //*******************Logic to land on Master login Page*************************
-/*
-        //Fetching coordinates of the Hidden element
+
+       //Fetching coordinates of the Hidden element
         MobileElement Hidden_menu = (MobileElement) driver.findElement(PO.Hidden_Menu);
 
         int x = Hidden_menu.getLocation().getX();
@@ -41,11 +41,8 @@ public class Upgrade_Package extends BaseUtil {
         //Scrolling randomly Day section
         TouchAction touchAction = new TouchAction(driver);
         for(int i=0; i<=7; i++)
+            Thread.sleep(250);
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
-*/
-        //Clicking Hidden Menu 4 times to get to Master login Screen
-        for(int i=0; i<=10; i++)
-            _click(PO.Hidden_Menu);
 
         //Asserting the Student Home Page
         Assert.assertTrue(_is_displayed(PO.Submit));
