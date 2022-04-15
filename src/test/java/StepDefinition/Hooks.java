@@ -38,29 +38,64 @@ public class Hooks extends BaseUtil {
     @Before(order=1)
     public void App_launch_On_PCloudy() throws MalformedURLException {
 
+        //Creating DesiredCapabilities object
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pCloudy_Username", System.getenv("pCloudy_Username"));
-        capabilities.setCapability("pCloudy_ApiKey", System.getenv("pCloudy_ApiKey"));
-        capabilities.setCapability("pCloudy_DurationInMinutes", 60);
-        capabilities.setCapability("newCommandTimeout", 120);
-        capabilities.setCapability("launchTimeout", 600);
-        capabilities.setCapability("pCloudy_DeviceFullName", pCloudy_DeviceFullName);
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("automationName", "uiautomator2");
-        capabilities.setCapability("pCloudy_ApplicationName", "app-arm64-v8a-release.apk");
-        capabilities.setCapability("appPackage", "com.brightchamps.learner");
-        capabilities.setCapability("appActivity", "com.brightchamps.learner.MainActivity");
-        capabilities.setCapability("pCloudy_WildNet", "true");
-        capabilities.setCapability("pCloudy_EnableVideo", "true");
-        capabilities.setCapability("pCloudy_EnablePerformanceData", "true");
-        capabilities.setCapability("pCloudy_EnableDeviceLogs", "true");
+
+        if (Platform.equalsIgnoreCase("Android"))
+
+            {
+
+            capabilities.setCapability("pCloudy_Username", System.getenv("pCloudy_Username"));
+            capabilities.setCapability("pCloudy_ApiKey", System.getenv("pCloudy_ApiKey"));
+            capabilities.setCapability("pCloudy_DurationInMinutes", 60);
+            capabilities.setCapability("newCommandTimeout", 120);
+            capabilities.setCapability("launchTimeout", 600);
+            capabilities.setCapability("pCloudy_DeviceFullName", pCloudy_DeviceFullName);
+            capabilities.setCapability("platformName", "Android");
+            capabilities.setCapability("automationName", "uiautomator2");
+            capabilities.setCapability("pCloudy_ApplicationName", "app-arm64-v8a-release.apk");
+            capabilities.setCapability("appPackage", "com.brightchamps.learner");
+            capabilities.setCapability("appActivity", "com.brightchamps.learner.MainActivity");
+            capabilities.setCapability("pCloudy_WildNet", "true");
+            capabilities.setCapability("pCloudy_EnableVideo", "true");
+            capabilities.setCapability("pCloudy_EnablePerformanceData", "true");
+            capabilities.setCapability("pCloudy_EnableDeviceLogs", "true");
+
+            }
+
+
+        if (Platform.equalsIgnoreCase("iOS"))
+
+            {
+                capabilities.setCapability("pCloudy_Username", System.getenv("pCloudy_Username"));
+                capabilities.setCapability("pCloudy_ApiKey", System.getenv("pCloudy_ApiKey"));
+                capabilities.setCapability("pCloudy_DurationInMinutes", 60);
+                capabilities.setCapability("newCommandTimeout", 120);
+                capabilities.setCapability("launchTimeout", 600);
+                capabilities.setCapability("pCloudy_DeviceFullName", pCloudy_DeviceFullName);
+                capabilities.setCapability("platformName", "ios");
+                capabilities.setCapability("automationName", "XCUITest");
+                capabilities.setCapability("pCloudy_ApplicationName", "Learner_Resigned1649941484.ipa");
+                capabilities.setCapability("appPackage", "com.brightchamps.learner");
+                capabilities.setCapability("pCloudy_WildNet", "true");
+                capabilities.setCapability("pCloudy_EnableVideo", "true");
+                capabilities.setCapability("pCloudy_EnablePerformanceData", "true");
+                capabilities.setCapability("pCloudy_EnableDeviceLogs", "true");
+            }
 
         // Initialise the remote AppiumDriver using BrowserStack remote URL
         // and desired capabilities defined above
 
         URL url = new URL("https://device.pcloudy.com/appiumcloud/wd/hub");
         driver = new AppiumDriver(url, capabilities);
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 30);
+
+        //Handling Notificiation Alert in iOS
+        if (Platform.equalsIgnoreCase("iOS"))
+            wait.until(ExpectedConditions
+                    .presenceOfElementLocated(By.xpath("//*[@name='Allow']")))
+                    .click();
+
     }
 
     //@Before

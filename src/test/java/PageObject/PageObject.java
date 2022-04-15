@@ -13,9 +13,9 @@ public class PageObject {
 
    public By input_password = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Password']");
 
-   public By Enter_Mobile_No = By.xpath("//*[@"+BaseUtil.attributeText+"='Enter Mobile Number']");
+   public By Enter_Mobile_No = By.xpath("//*[@"+BaseUtil.attributeID+"='country_code']/following-sibling::*");
 
-   public By Enter_Mobile_No_clear = By.xpath("//*[@"+BaseUtil.attributeText+"='123']");
+   public By Enter_Mobile_No_iOS = By.xpath("//*[@"+BaseUtil.attributeID+"='country_code']/following-sibling::*/*");
 
    public By Verify_OTP_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='verify_otp']");
 
@@ -91,9 +91,9 @@ public class PageObject {
 
    public By Third_Class_dropdown = By.xpath("//*[@"+BaseUtil.attributeID+"='select_day'][3]");
 
-   public By Fourth_class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='4th Class");
+   public By Fourth_class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='4th Class']");
 
-   public By Third_Class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='3rd Class");
+   public By Third_Class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='3rd Class']");
 
    public By Hidden_Menu = By.xpath("//*[@"+BaseUtil.attributeID+"='hidden_menu']");
 

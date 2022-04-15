@@ -1,5 +1,6 @@
 package pCloudy_APIs;
 
+import Base.BaseUtil;
 import org.apache.commons.lang.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +10,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class pCloudy_APIs_Utility {
+public class pCloudy_APIs_Utility extends BaseUtil {
 
 
     public String _get_token() throws IOException {
@@ -46,7 +47,7 @@ public class pCloudy_APIs_Utility {
         http.setDoOutput(true);
         http.setRequestProperty("Content-Type", "application/json");
 
-        String data = "{\n\"token\":\""+_get_token()+"\",\n\"duration\":10, \n\"platform\":\"android\", \n\"available_now\":\"true\"\n}";
+        String data = "{\n\"token\":\""+_get_token()+"\",\n\"duration\":10, \n\"platform\":\""+Platform+"\", \n\"available_now\":\"true\"\n}";
 
         byte[] out = data.getBytes(StandardCharsets.UTF_8);
 

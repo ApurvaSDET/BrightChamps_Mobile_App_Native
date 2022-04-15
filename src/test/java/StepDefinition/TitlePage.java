@@ -133,7 +133,12 @@ public class TitlePage extends BaseUtil {
         //getting values from Datatable as a Key: Value pair in feature file
         data = dataTable.asMaps(String.class, String.class);
 
-        _cleartext(PO.Enter_Mobile_No_clear);
+        if (Platform.equalsIgnoreCase("Android"))
+            _cleartext(PO.Enter_Mobile_No);
+        else
+            _cleartext(PO.Enter_Mobile_No_iOS);
+
+        //Entering test data
         _SendKeys(PO.Enter_Mobile_No, data.get(0).get("Mobile"));
 
     }

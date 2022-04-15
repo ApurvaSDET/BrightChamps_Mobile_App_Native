@@ -144,9 +144,9 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @Then("Verify Certificate on Home Page is visible")
     public void verify_locked_certificate_on_home_page_is_visible() throws InterruptedException {
 
-        Scrolling_to_element(POD.Demo_Certificate);
+        Scrolling_to_element(POD.Locked_icon_on_Demo_Certificate);
         swipeScreen(Direction.UP);
-        Assert.assertTrue(_is_displayed(POD.Demo_Certificate));
+        Assert.assertTrue(_is_displayed(POD.Locked_icon_on_Demo_Certificate));
 
     }
 

@@ -8,8 +8,6 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,8 +136,7 @@ public class HomePage extends BaseUtil {
             if (Platform.equalsIgnoreCase("Android"))
                 Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown));
             else
-                Assert.assertTrue(driver.findElement(PO.Third_Class_dropdown_ios).isDisplayed());
-                //Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown_ios));
+                Assert.assertTrue(_is_displayed(PO.Third_Class_dropdown_ios));
 
         }
 
@@ -171,6 +168,7 @@ public class HomePage extends BaseUtil {
             if(count!=4)
                 Scrolling_to_element(PO.Book_Your_Class_CTA); //Scrolling till Element is visible
 
+            Thread.sleep(500);
             al.add(_get_WebElements_size(PO.Class_Per_week_count));
 
         }
