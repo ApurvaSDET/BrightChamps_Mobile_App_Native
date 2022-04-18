@@ -36,6 +36,7 @@ public class Upgrade_Package extends BaseUtil {
         for(int i=0; i<=7; i++) {
             System.out.println(_get_current_time_in_sec());
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
+            Thread.sleep(100);
         }
 
         //Asserting the Student Home Page
