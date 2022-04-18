@@ -18,7 +18,7 @@ public class Upgrade_Package extends BaseUtil {
     HomePage obj;
 
     @Given("User is at Student portal master login Page")
-    public void user_is_at_student_portal_master_login() throws InterruptedException {
+    public void user_is_at_student_portal_master_login() {
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
@@ -33,11 +33,8 @@ public class Upgrade_Package extends BaseUtil {
 
         //Scrolling randomly Day section
         TouchAction touchAction = new TouchAction(driver);
-        for(int i=0; i<=7; i++) {
-            System.out.println(_get_current_time_in_sec());
+        for(int i=0; i<=7; i++)
             touchAction.tap(PointOption.point(x + 15, y + 20)).perform();
-            Thread.sleep(100);
-        }
 
         //Asserting the Student Home Page
         _wait(PO.Submit);

@@ -14,7 +14,7 @@ Feature: Demo User Part 2
     Then   User is at the Home Page
 
 
-  @Regression @Demo12
+  @Regression @Demo
   Scenario: 1 #Verifying 'Congratulations!' Card for Demo User
 
     Then   Verify Congratulations! Card is visible at the top
