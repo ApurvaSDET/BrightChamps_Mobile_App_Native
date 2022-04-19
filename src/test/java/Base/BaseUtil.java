@@ -614,7 +614,6 @@ public class BaseUtil {
         if (Platform.equalsIgnoreCase("Android"))
 
         {
-            DeviceNames.add("GOOGLE_Pixel6_Android_12.0.0_1c082");
             DeviceNames.add("Samsung_GalaxyA71_Android_11.0.0_fe4a3");
             DeviceNames.add("Samsung_GalaxyA31_Android_11.0.0_32c0a");
             DeviceNames.add("Google_Pixel5_Android_11.0.0_21d59");
@@ -627,7 +626,6 @@ public class BaseUtil {
             DeviceNames.add("Google_Pixel3_Android_12.0.0_a6091");
             DeviceNames.add("Google_Pixel2_Android_11.0.0_c2579");
             DeviceNames.add("Samsung_GalaxyS8Plus_Android_9.0.0_2e32c");
-            DeviceNames.add("Samsung_GalaxyNote8_Android_9.0.0_7db62");
             DeviceNames.add("Samsung_GalaxyS10_Android_9.0.0_01e83");
             DeviceNames.add("Samsung_SamsungGalaxyS9Plus_Android_10.0.0_d332a");
             DeviceNames.add("Oneplus_7_Android_9.0.0_f3b35");
@@ -636,40 +634,39 @@ public class BaseUtil {
 
         else
         {
-            DeviceNames.add("APPLE_iPhone13Pro_Ios_15.2.0_2d8ea");
-            DeviceNames.add("APPLE_iPhone12ProMax_Ios_15.1.1_ebe7c");
-            DeviceNames.add("APPLE_iPhone12_Ios_15.0.0_03540");
-            DeviceNames.add("APPLE_iPhoneXR_Ios_15.3.1_dfb5a");
-            DeviceNames.add("APPLE_iPhoneXR_Ios_15.2.1_b3558");
+            DeviceNames.add("APPLE_iPhone11_Ios_14.7.1_28411");
             DeviceNames.add("APPLE_iPhone11_Ios_15.0.2_4414a");
+            DeviceNames.add("APPLE_iPhoneXR_Ios_15.3.1_dfb5a");
+            DeviceNames.add("Apple_iPhoneXR_Ios_14.7.1_e2255");
             DeviceNames.add("APPLE_iPhoneXSMax_Ios_15.0.0_9049f");
             DeviceNames.add("Apple_iPhoneXS_Ios_14.3.0_33b29");
             DeviceNames.add("APPLE_iPhoneXS_Ios_15.0.1_5b352");
-            DeviceNames.add("APPLE_iPhone11_Ios_14.7.1_28411");
             DeviceNames.add("APPLE_iPhone8plus_Ios_13.1.2_dd878");
-            DeviceNames.add("Apple_iPadMini2_Ios_12.5.1_a3ea4");
             DeviceNames.add("APPLE_iPad8thGen_Ios_15.3.1_7c2de");
             DeviceNames.add("APPLE_iPadPro3rdGen_Ios_15.3.0_b7060");
-            DeviceNames.add("Apple_iPhoneXSMax_Ios_14.7.1_00b1e");
+            DeviceNames.add("Apple_iPhone7_Ios_13.1.3_316f0");
+            DeviceNames.add("Apple_iPhoneXSMax_Ios_14.0.0_68985");
+            DeviceNames.add("APPLE_iPhone8plus_Ios_13.1.2_dd878");
+            DeviceNames.add("APPLE_iPhone11_Ios_14.7.1_28411");
+            DeviceNames.add("Apple_iPhoneXR_Ios_14.7.1_e2255");
+            DeviceNames.add("APPLE_iPhoneXS_Ios_15.0.1_5b352");
+
         }
 
         //Storing pCloudy Response in a String
         String API_Response = new pCloudy_APIs_Utility()._get_active_device_list();
 
 
-        // Iterator to iterate the cityNames
-        Iterator iterator = DeviceNames.iterator();
+        while (true)
+        {
+            //Storing nay Random Element of AL in String
+            String nextDevice = DeviceNames.get(new Random().nextInt(16));
 
-        while (iterator.hasNext()) {
-
-            //Storing next Element of AL in String
-            String nextDevice = iterator.next().toString();
-
-            if (API_Response.contains(nextDevice)) {
-                this.pCloudy_DeviceFullName = nextDevice;
+            if (API_Response.contains(nextDevice))
+             {
+                pCloudy_DeviceFullName = nextDevice;
                 break;
-            }
-
+             }
         }
 
     }
