@@ -105,7 +105,11 @@ public class PageObject {
 
    public By Cancel_Reason = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'cancel_reason_')]");
 
-   public By Know_More_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
+   public By Know_More_CTA = By.xpath("//*[@"+BaseUtil.attributeText+"='Share The Joy']/following-sibling::*");
+
+   public By Referral_Card_Android = By.xpath("//*[@text='Whats More?']/preceding-sibling::*/android.widget.ImageView");
+
+   public By Referral_Card_iOS = By.xpath("//*[@name='How its Work? Leaderboard']/following-sibling::*/*");
 
    public By Leaderboard_link = By.xpath("//*[@"+BaseUtil.attributeText+"='Leaderboard']");
 

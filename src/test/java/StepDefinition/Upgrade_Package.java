@@ -10,6 +10,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+
 import java.util.List;
 import java.util.Map;
 
@@ -205,4 +207,96 @@ public class Upgrade_Package extends BaseUtil {
 
     }
 
+    //Scenario: 5 #Verifying Unlocked Certificates on Certificate Screen
+
+    @When("User clicks on My Certificates")
+    public void user_clicks_on_my_certificates() {
+
+        _click(POP.MyCertificates);
+
+    }
+
+    @Then("User is redirected to My Certificates Screen")
+    public void user_is_redirected_to_my_certificates_screen() {
+
+        _wait(POP.MyCertificateScreen);
+        Assert.assertTrue(_is_displayed(POP.MyCertificateScreen));
+
+    }
+
+    @Then("Verify Unlocked Certificate can be downloaded")
+    public void verify_unlocked_certificate_can_be_downloaded() {
+
+        List<WebElement> EarnedCertificates;
+
+        if(Platform.equalsIgnoreCase("Android"))
+            EarnedCertificates = driver.findElements(POP.EarnedCertifcates_Android); //Fetching list of WebElements in Adnroid
+        else
+            EarnedCertificates = driver.findElements(POP.EarnedCertifcates); //Fetching list of WebElements in iOS
+
+
+        //Using enhanced for loop to get the elements
+        for (WebElement ele : EarnedCertificates)
+
+        {
+            //Clicking on each Unlocked Certificates
+            ele.click();
+
+            //waiting to redirect to mWeb
+            _waitAbsence(POP.MyCertificateScreen);
+
+            //Navigating back to the app from mWeb
+            _Navigate_BacktoApp();
+
+            //Asserting if landed on My Certificates Screen
+            _wait(POP.MyCertificateScreen);
+
+        }
+
+    }
+
+    //Scenario: 6 #Verifying Locked Certificates on Certificate Screen
+
+    @Then("Verify Locked Certificates should be available Under Upgrade Now Section")
+    public void verify_locked_certificates_should_be_available_under_upgrade_now_section() throws InterruptedException {
+
+        //Scrolling till Locked Ceretificates Screen
+        Scrolling_to_element(POP.LockedCertifcates);
+
+        //Swiping up to Scroll till end of the screen
+        swipeScreen(Direction.UP);
+
+        //Verifying if locked Certificates are visible
+        Assert.assertTrue(_get_WebElements_size(POP.LockIcon) > 2);
+
+    }
+
+
+    @Then("Verify lock icon on all the locked Certificates")
+    public void verify_lock_icon_on_all_the_locked_certificates() {
+
+        //Verifying if locked Certificates are visible
+        Assert.assertTrue(_get_WebElements_size(POP.LockIcon) > 2);
+
+    }
+
+    //Scenario: 7 #Verifying Upgrade Now CTA on Certificate Screen
+
+    @When("User Clicks on Upgrade Now CTA")
+    public void user_clicks_on_update_now() throws InterruptedException {
+
+        //Scrolling till Locked Ceretificates Screen
+        Scrolling_to_element(PO.LoginWithOTP_CTA);
+
+        _click(PO.LoginWithOTP_CTA);
+
+    }
+
+    @Then("User is redirected to Upgrade Package Screen")
+    public void userIsRedirectedToUpgradePackageScreen() {
+
+        _wait(POP.UpgradePackage_Screen);
+        Assert.assertTrue(_is_displayed(POP.UpgradePackage_Screen));
+
+    }
 }

@@ -5,10 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -167,7 +164,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("When User scrolls down to the Awesome projects cards")
     public void when_user_scrolls_down_to_the_awesome_projects_cards() throws InterruptedException {
 
-        Scrolling_to_element(POD.Start_Creating_CTA_Visibility);
+        Scrolling_to_element(POD.Start_Creating);
 
     }
 
@@ -182,12 +179,6 @@ public class Demo_User_Non_Completed extends BaseUtil {
                 //CLicking on each Video Card
                 _click(POD.Video_Card_Container_Android);
 
-                //Waiting till another container with 'X' icon in it is available
-                _wait(POD.X_button_Video_Container);
-
-                //Clicking on 'X' icon to close the running video
-                _click(POD.X_button_Video_Container);
-
                 //Clicking on Next Button
                 _click(POD.Next_Video_button);
             }
@@ -197,24 +188,22 @@ public class Demo_User_Non_Completed extends BaseUtil {
         else
         {
 
-                while(!_is_displayed(POD.Next_Video_button_disabled)) {
+            //Fetching list of WebElements
+            List<WebElement> next_button = driver.findElements(POD.Next_Video_button);
 
-                    //CLicking on each Video Card
-                    _click(POD.Video_Card_Container_iOS);
+            //Using enhanced for loop to get the elements
+            for (WebElement ele : next_button)
 
-                    //Waiting till another container with 'X' icon in it is available
-                    _wait(POD.X_button_Video_Container);
+            {
+                //CLicking on each Video Card
+                _click(POD.Video_Card_Container_iOS);
 
-                    //Clicking on 'X' icon to close the running video
-                    _click(POD.X_button_Video_Container);
+                //Clicking on Next Button
+                ele.click();
 
-                    //Clicking on Next Button
-                    _click(POD.Next_Video_button);
-
-                }
+            }
 
         }
-
     }
 
     //Scenario: 7 #Verifying ‘Start Creating’ CTA on Demo Home Page
@@ -223,7 +212,7 @@ public class Demo_User_Non_Completed extends BaseUtil {
     @When("User clicks on Start Creating CTA")
     public void user_clicks_on_start_creating_cta() throws InterruptedException {
 
-        Scrolling_to_element(POD.Start_Creating_CTA_Visibility);
+        Scrolling_to_element(POD.Start_Creating);
         _click(POD.Start_Creating);
 
     }

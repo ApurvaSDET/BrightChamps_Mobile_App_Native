@@ -30,9 +30,9 @@ public class PageObjectDemo {
 
     public By Video_Card_Text = By.xpath("//*[@"+BaseUtil.attributeText+"='Awesome projects by our champs']");
 
-    public By Video_Card_Container_Android = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'awesome_back_button')]/following-sibling::*/*/*");
+    public By Video_Card_Container_Android = By.xpath("//*[@resource-id='movie_player']");
 
-    public By Video_Card_Container_iOS = By.xpath("//*[starts-with(@name,'awesome_back_button')]/preceding-sibling::*/*/*");
+    public By Video_Card_Container_iOS = By.xpath("//*[@name='YouTube video player']");
 
     public By X_button_Video_Container = By.xpath("//*[@"+BaseUtil.attributeID+"='youtube_view_crossClicked']");
 

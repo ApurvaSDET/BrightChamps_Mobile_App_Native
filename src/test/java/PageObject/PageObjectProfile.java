@@ -6,9 +6,45 @@ import org.openqa.selenium.By;
 public class PageObjectProfile {
 
 
+    public By QRLogin = By.xpath("//*[@"+BaseUtil.attributeID+"='login_on_web_cta']");
+
+    public By qrloginlink = By.xpath("//*[@"+BaseUtil.attributeText+"='https://students.brightchamps.com/qr']");
+
+    public By ChatwithTeacher = By.xpath("//*[@"+BaseUtil.attributeID+"='chat_cta']");
+
+    public By Category_PopUp_Header = By.xpath("//*[@"+BaseUtil.attributeText+"='Select Category']");
+
+    public By Category_PopUp_List = By.xpath("//*[@"+BaseUtil.attributeID+"='button']/preceding-sibling::*/*/*");
+
+    public By Category_Chat_List_iOS = By.xpath("//*[@"+BaseUtil.attributeID+"='button']/preceding-sibling::*/*/*/*");
+
+    public By Category_PopUp_List_iOS = By.xpath("//*[@"+BaseUtil.attributeID+"='button']/preceding-sibling::*/*");
+
+    public By ChatHelp  = By.xpath("//*[@"+BaseUtil.attributeText+"='Teacher Tech Testing']/following-sibling::*");
+
+    public By TextBox = By.xpath("//*[@"+BaseUtil.attributeText+"='Type Something here....']");
+
+    public By ChatHelp_bottomsheet = By.xpath("//*[@"+BaseUtil.attributeText+"='How Can We Help You?']");
+
+    public By SendIcon = By.xpath("//*[@"+BaseUtil.attributeID+"='chat_message_button']");
+
     public By Personal_info = By.xpath("//*[@"+BaseUtil.attributeID+"='personal_information_cta']");
 
     public By Validation_Text = By.xpath("//*[starts-with(@"+BaseUtil.attributeText+",'Please')]");
+
+    public By MyCertificates = By.xpath("//*[@"+BaseUtil.attributeID+"='my_certificate_cta']");
+
+    public By MyCertificateScreen = By.xpath("//*[@"+BaseUtil.attributeText+"='Certificates Earned']");
+
+    public By EarnedCertifcates = By.xpath("//*[@"+BaseUtil.attributeText+"='Certificates Earned']/following-sibling::*/*");
+
+    public By EarnedCertifcates_Android = By.xpath("//*[@"+BaseUtil.attributeText+"='Certificates Earned']/following-sibling::*/*/*");
+
+    public By LockedCertifcates = By.xpath("//*[@"+BaseUtil.attributeText+"='Upgrade now to earn more']");
+
+    public By LockIcon = By.xpath("//*[@"+BaseUtil.attributeText+"='Upgrade now to earn more']/following-sibling::*/*/*/*");
+
+    public By UpgradePackage_Screen = By.xpath("//*[@"+BaseUtil.attributeID+"='Already enrolled_clicked']");
 
     public By Invite = By.xpath("//*[@"+BaseUtil.attributeID+"='Invite & Win']");
 

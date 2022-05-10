@@ -120,7 +120,7 @@ Feature: Home Page Part 1
 
     When  User clicks on Know More CTA of referral card
     Then  User is at Invite & Win Screen
-    When  User clicks on Know More CTA of referral card
+    When  User clicks on referral card of Invite & Win Screen
     Then  User is at Policy Screen
     When  User clicks on back button of Page
     Then  User is at Invite & Win Screen

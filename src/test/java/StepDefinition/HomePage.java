@@ -286,7 +286,7 @@ public class HomePage extends BaseUtil {
     }
 
     @Then("User is at Invite & Win Screen")
-    public void User_at_Invite_Win_Screen() throws InterruptedException {
+    public void User_at_Invite_Win_Screen() {
 
         _wait(PO.Leaderboard_link);
         Assert.assertEquals("Invite & Win", _get_text(PO.Page_Title));
@@ -366,6 +366,16 @@ public class HomePage extends BaseUtil {
 
 
     //Scenario: 9 #Verifying Know More CTA on Invite Screen
+
+    @When("User clicks on referral card of Invite & Win Screen")
+    public void User_clicks_on_referral_card_of_Invite_Win_Screen() {
+
+        if(Platform.equalsIgnoreCase("Android"))
+            _click(PO.Referral_Card_Android);
+        else
+            _click(PO.Referral_Card_iOS);
+
+    }
 
     @Then("User is at Policy Screen")
     public void User_is_at_Policy_Screen() throws InterruptedException {

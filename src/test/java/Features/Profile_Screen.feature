@@ -28,3 +28,48 @@ Feature: Profile Page
 
     And   User clicks on Contact Us
     Then  User is redirected to the Mail
+
+  @Regression @QRLogin
+  Scenario: 3 #Verifying Login via QR
+
+    And   User clicks on Login on Web
+    Then  User is redirected to Login via QR code screen
+    When  User clicks on back button of Page
+    Then  User is at Profile screen
+
+  @Regression @Chat
+  Scenario: 4 #Verifying Chat with Teacher
+
+    And   User clicks on Chat with Teacher
+    When  User selects any random Category from Pop-up
+    Then  User is at Chat Screen
+    When  User clicks on back button of Page
+    Then  User is at Profile screen
+
+  @Regression @Chat
+  Scenario: 5 #Verifying Help Centre on Chat Screen
+
+    And   User clicks on Chat with Teacher
+    When  User selects any random Category from Pop-up
+    Then  User is at Chat Screen
+    When  User clicks on Help icon
+    Then  Verify Help pop-up should open
+    When  User clicks on SUBMIT CTA on Pop-up
+    Then  Toast message should appear
+    When  User Selects any random feedback
+    And   User clicks on SUBMIT CTA on Pop-up
+    Then  User is at Mail Screen
+
+  @Regression @Chat
+  Scenario: 6 #Verifying Sending a text
+
+    And   User clicks on Chat with Teacher
+    When  User selects any random Category from Pop-up
+    Then  User is at Chat Screen
+    When  User clicks on Send icon
+    Then  Toast message should appear
+    When  User enters text in chat box
+    And   User clicks on Send icon
+    Then  Message should be Sent Successfully
+    When  User clicks on back button of Page
+    Then  User is at Profile screen
