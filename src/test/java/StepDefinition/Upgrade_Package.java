@@ -20,7 +20,10 @@ public class Upgrade_Package extends BaseUtil {
     HomePage obj;
 
     @Given("User is at Student portal master login Page")
-    public void user_is_at_student_portal_master_login() {
+    public void user_is_at_student_portal_master_login() throws InterruptedException {
+
+        //Waiting for Splash Screen to go off
+        Thread.sleep(4000);
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);
@@ -173,8 +176,10 @@ public class Upgrade_Package extends BaseUtil {
         while(!_is_displayed(PO.Schedule_classes_CTA_home)) {
 
             obj.user_clicks_on_three_dots_button();
-            obj.dropdown_should_appear();
-            obj.user_selects_cancel_button();
+            obj.User_is_at_Edit_Reschedule_screen();
+            obj.User_Selects_Not_available_for_next_Class_option();
+            obj.User_taps_on_Submit_CTA();
+            obj.User_is_at_Edit_Reschedule_screen();
             obj.user_is_at_cancel_screen();
             obj.user_clicks_on_yes_button();
             obj.user_should_be_able_to_successfully_cancel_the_class();
@@ -202,7 +207,7 @@ public class Upgrade_Package extends BaseUtil {
         obj.user_selects_classes_one_by_one();
         obj.user_should_see_the_option_to_select_date_amd_time_based_on_number_of_classes_selected();
         obj.user_selected_all_four_classes_date_and_time();
-        obj.user_clicks_on_book_your_slot_cta();
+        obj.User_taps_on_Submit_CTA();
         obj.user_should_be_able_to_successfully_reschedule_all_the_classes();
 
     }

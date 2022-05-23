@@ -20,9 +20,7 @@ Feature: Home Page Part 1
   Scenario: 1 #Verifying back button of Re-scheduling Next Class screen
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Reschedule button
-    Then   User is at Reschedule screen and Next class should be pre-selected
+    Then   User is at Edit Reschedule screen
     When   User clicks on back button
     Then   User should be redirected to Home Page
 
@@ -31,11 +29,13 @@ Feature: Home Page Part 1
   Scenario: 2 #Verifying Re-scheduling Next Class
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Reschedule button
-    Then   User is at Reschedule screen and Next class should be pre-selected
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Not available for next Class' option
+    And    User taps on Submit CTA
+    Then   User is at Reschedule Next Class screen
     When   User selected next class date and time
-    And    User clicks on Book your Slot CTA
+    And    User selected Reschedule Reason
+    And    User taps on Submit CTA
     Then   User should be able to successfully Reschedule the class
     And    User should be redirected to Home Page
 
@@ -44,48 +44,67 @@ Feature: Home Page Part 1
   Scenario: 3 #Verifying Re-scheduling All Class
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Reschedule button
-    Then   User is at Reschedule screen
-    And    User selects All Class tab
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Update Entire Schedule' option
+    And    User taps on Submit CTA
     Then   By default three class per week should be shown
     When   User selects classes one by one
     Then   User should see the option to select date amd time based on number of classes selected
     When   User selected all four classes date and time
-    And    User clicks on Book your Slot CTA
+    And    User taps on Submit CTA
     Then   User should be able to successfully Reschedule all the classes
     And    User should be redirected to Home Page
 
 
-  @Regression @Cancel
-  Scenario: 4 #Verifying No button on Cancel Class card
+  @Regression @Reschedule @AddClass
+  Scenario: 4 #Verifying Adding More Classes feature
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Cancel button
-    Then   User is at Cancel screen
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Complete Your Course Fast' option
+    And    User taps on Submit CTA
+    Then   User is at Add More Classes screen
+    When   User selected next class date and time
+    And    User taps on Submit CTA
+    Then   User should be able to successfully Reschedule the class
+    And    User should be redirected to Home Page
+
+
+  @Regression @Cancel
+  Scenario: 5 #Verifying No button on Cancel Class card
+
+    When   User Clicks on three dots button
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Not available for next Class' option
+    And    User taps on Submit CTA
+    Then   User is at Reschedule Next Class screen
+    When   User navigates to Cancel screen
     When   User clicks on NO button
-    Then   User should be redirected to Home Page
+    Then   User is at Edit Reschedule screen
 
 
   @Regression @Cancel
-  Scenario: 5 #Verifying YES button on Cancel Class card without selecting any reason
+  Scenario: 6 #Verifying YES button on Cancel Class card without selecting any reason
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Cancel button
-    Then   User is at Cancel screen
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Not available for next Class' option
+    And    User taps on Submit CTA
+    Then   User is at Reschedule Next Class screen
+    When   User navigates to Cancel screen
     When   User clicks on YES button
     Then   User should be able to successfully Cancel the class
     And    User should be redirected to Home Page
 
   @Regression @Cancel
-  Scenario: 6 #Verifying YES button on Cancel Class card after selecting any reason
+  Scenario: 7 #Verifying YES button on Cancel Class card after selecting any reason
 
     When   User Clicks on three dots button
-    Then   Dropdown should appear
-    When   User Selects Cancel button
-    Then   User is at Cancel screen
+    Then   User is at Edit Reschedule screen
+    When   User Selects 'Not available for next Class' option
+    And    User taps on Submit CTA
+    Then   User is at Reschedule Next Class screen
+    When   User navigates to Cancel screen
     When   User select Cancellation reason
     And    User clicks on YES button
     Then   User should be able to successfully Cancel the class
@@ -93,7 +112,7 @@ Feature: Home Page Part 1
 
 
   @Regression @Referral
-  Scenario: 7 #Verifying referral card on Home Page
+  Scenario: 8 #Verifying referral card on Home Page
 
     When    User clicks on Know More CTA of referral card
     Then    User is at Invite & Win Screen
@@ -104,7 +123,7 @@ Feature: Home Page Part 1
 
 
   @Regression @Referral
-  Scenario: 8 #Verifying COPY LINK on Invite Screen
+  Scenario: 9 #Verifying COPY LINK on Invite Screen
 
     When  User clicks on Know More CTA of referral card
     Then  User is at Invite & Win Screen
@@ -116,7 +135,7 @@ Feature: Home Page Part 1
 
 
   @Regression @Referral
-  Scenario: 9 #Verifying Know More CTA on Invite Screen
+  Scenario: 10 #Verifying Know More CTA on Invite Screen
 
     When  User clicks on Know More CTA of referral card
     Then  User is at Invite & Win Screen
@@ -126,9 +145,19 @@ Feature: Home Page Part 1
     Then  User is at Invite & Win Screen
 
   @Regression @Referral
-  Scenario: 10 #Verifying Leaderboard Screen
+  Scenario: 11 #Verifying Leaderboard Screen
 
     When  User clicks on Know More CTA of referral card
     Then  User is at Invite & Win Screen
     When  User clicks on Leaderboard link
     Then  User is at Leaderboard Screen
+
+  @Regression @GlobalHouse
+  Scenario: 12 #Verifying global House Banner
+
+    When    User clicks on global house banner
+    Then    User should be redirected to Global House Screen
+    When    User selects all the Preference
+    And     User clicks on Submit CTA
+    Then    Toast message should appear
+    And     Verify Congratulations! message on Global House Screen

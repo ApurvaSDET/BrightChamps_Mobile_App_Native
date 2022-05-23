@@ -16,7 +16,10 @@ public class TitlePage extends BaseUtil {
 
 
     @Given("User is at Student portal Login Page")
-    public void user_is_at_student_portal() {
+    public void user_is_at_student_portal() throws InterruptedException {
+
+        //Waiting for Splash Screen to go off
+        Thread.sleep(4000);
 
         //waiting till landing on login screen
         _wait(PO.LoginWithPassword);

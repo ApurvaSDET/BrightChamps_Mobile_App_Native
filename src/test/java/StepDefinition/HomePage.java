@@ -37,11 +37,11 @@ public class HomePage extends BaseUtil {
 
     }
 
-    @Then("User is at Reschedule screen and Next class should be pre-selected")
-    public void user_is_at_reschedule_screen_and_next_class_should_be_pre_selected() {
+    @Then("User is at Edit Reschedule screen")
+    public void User_is_at_Edit_Reschedule_screen() {
 
-        _wait(PO.Next_Class_Selected);
-        Assert.assertTrue(_is_displayed(PO.Next_Class_Selected));
+        _wait(PO.Book_Your_Class_CTA);
+        Assert.assertTrue(_is_displayed(PO.Book_Your_Class_CTA));
 
     }
 
@@ -62,6 +62,32 @@ public class HomePage extends BaseUtil {
 
     //Scenario: 2 #Verifying Re-scheduling Next Class
 
+    @When("User Selects 'Not available for next Class' option")
+    public void User_Selects_Not_available_for_next_Class_option() {
+
+        _wait(PO.Not_Available_Next_Class);
+        _click(PO.Not_Available_Next_Class);
+
+    }
+
+    @And("User taps on Submit CTA")
+    public void User_taps_on_Submit_CTA() {
+
+
+
+         _wait(PO.Submit_CTA);
+         _click(PO.Submit_CTA);
+
+    }
+
+    @Then("User is at Reschedule Next Class screen")
+    public void User_is_at_Reschedule_Next_Class_screen() {
+
+        _wait(PO.Submit_CTA);
+        Assert.assertTrue(_is_displayed(PO.Submit_CTA));
+
+    }
+
     @When("User selected next class date and time")
     public void user_selected_next_class_date_and_time() {
 
@@ -79,13 +105,7 @@ public class HomePage extends BaseUtil {
 
     }
 
-    @When("User clicks on Book your Slot CTA")
-    public void user_clicks_on_book_your_slot_cta() {
 
-        _wait(PO.Book_Your_Class_CTA);
-        _click(PO.Book_Your_Class_CTA);
-
-    }
 
     @Then("User should be able to successfully Reschedule the class")
     public void user_should_be_able_to_successfully_reschedule_the_class() {
@@ -97,22 +117,11 @@ public class HomePage extends BaseUtil {
 
     //Scenario: 3 #Verifying Re-scheduling All Class
 
-    @Then("User is at Reschedule screen")
-    public void user_is_at_reschedule_screen() {
+    @When("User Selects 'Update Entire Schedule' option")
+    public void User_Selects_Update_Entire_Schedule_option() {
 
-        _wait(PO.All_Class);
-        Assert.assertTrue(_is_displayed(PO.All_Class));
-
-    }
-
-    @When("User selects All Class tab")
-    public void user_selects_all_class_tab() {
-
-        _click(PO.All_Class);
-
-        //Validating if All Class tab is selected
-        _wait(PO.All_Class_Selected);
-        Assert.assertTrue(_is_displayed(PO.All_Class_Selected));
+        _wait(PO.Update_Entire_Schedule);
+        _click(PO.Update_Entire_Schedule);
 
     }
 
@@ -120,7 +129,7 @@ public class HomePage extends BaseUtil {
     public void by_default_three_class_per_week_should_be_shown() throws InterruptedException {
 
         //Validating default no. of classes are shown
-        Scrolling_to_element(PO.Book_Your_Class_CTA);
+        Scrolling_to_element(PO.Disclaimer_Text);
 
         try {
 
@@ -166,7 +175,7 @@ public class HomePage extends BaseUtil {
             count++;
             ele.click();
             if(count!=4)
-                Scrolling_to_element(PO.Book_Your_Class_CTA); //Scrolling till Element is visible
+                Scrolling_to_element(PO.Disclaimer_Text); //Scrolling till Element is visible
 
             Thread.sleep(500);
             al.add(_get_WebElements_size(PO.Class_Per_week_count));
@@ -177,7 +186,11 @@ public class HomePage extends BaseUtil {
         Assert.assertEquals("2", String.valueOf(al.get(0)));
         Assert.assertEquals("4", String.valueOf(al.get(1)));
         Assert.assertEquals("6", String.valueOf(al.get(2)));
-        Assert.assertEquals("8", String.valueOf(al.get(3)));
+
+        if(Platform.equalsIgnoreCase("Android"))
+            Assert.assertEquals("7", String.valueOf(al.get(3)));
+        else
+            Assert.assertEquals("8", String.valueOf(al.get(3)));
 
     }
 
@@ -194,19 +207,25 @@ public class HomePage extends BaseUtil {
             ele.click();
 
             //Selecting any option from the available date/time
-            if (Platform.equalsIgnoreCase("Android")) {
-                _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements_Android, 5);
-                _random_options_from_dropdown(PO.Bottom_Sheet_Elements_Android);
-            }
-            else
-            {
-                _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements, 5);
-                _random_options_from_dropdown(PO.Bottom_Sheet_Elements);
-            }
+            PO.Select_slot();
 
             //Scrolling till Element is visible
             Scrolling_to_element(PO.Book_Your_Class_CTA);
             _wait(PO.Book_Your_Class_CTA);
+        }
+
+        if(Platform.equalsIgnoreCase("Android")) {
+
+            //Swiping up to select 2nd Time Slot
+            swipeScreen(Direction.DOWN);
+            _click(PO.Class_1_Select_Time);
+            PO.Select_slot();
+
+
+            //Scrolling till Element is visible
+            Scrolling_to_element(PO.Book_Your_Class_CTA);
+            _click(PO.Class_4_Select_Time);
+            PO.Select_slot();
         }
 
     }
@@ -219,33 +238,46 @@ public class HomePage extends BaseUtil {
 
     }
 
-    //Scenario: 4 #Verifying No button on Cancel Class card
+    //Scenario: 4 #Verifying Adding More Classes feature
 
-    @When("User Selects Cancel button")
-    public void user_selects_cancel_button() {
+    @When("User Selects 'Complete Your Course Fast' option")
+    public void User_Selects_Complete_Your_Course_Fast_option() {
 
-        _click(PO.Cancel_button);
+        _wait(PO.Fast_Course_Completion);
+        _click(PO.Fast_Course_Completion);
 
     }
 
-    @Then("User is at Cancel screen")
+    @Then("User is at Add More Classes screen")
+    public void User_is_at_Add_More_Classes_screen() {
+
+        _wait(PO.Disclaimer_Text);
+        Assert.assertTrue(_is_displayed(PO.Disclaimer_Text));
+
+    }
+
+
+    //Scenario: 5 #Verifying No button on Cancel Class card
+
+
+    @Then("User navigates to Cancel screen")
     public void user_is_at_cancel_screen() {
 
-        _wait(PO.Next_Class_Selected);
-        Assert.assertTrue(_is_displayed(PO.Next_Class_Selected));
+        swipeScreen(Direction.UP);
+        _wait(PO.No_Cancel_button);
+        Assert.assertTrue(_is_displayed(PO.No_Cancel_button));
 
     }
 
     @When("User clicks on NO button")
     public void user_clicks_on_no_button() {
 
-        swipeScreen(Direction.UP);
         _wait(PO.No_Cancel_button);
         _click(PO.No_Cancel_button);
 
     }
 
-    //Scenario: 5 #Verifying YES button on Cancel Class card without selecting any reason
+    //Scenario: 6 #Verifying YES button on Cancel Class card without selecting any reason
 
     @When("User clicks on YES button")
     public void user_clicks_on_yes_button() {
@@ -263,7 +295,7 @@ public class HomePage extends BaseUtil {
 
     }
 
-    //Scenario: 6 #Verifying YES button on Cancel Class card after selecting any reason
+    //Scenario: 7 #Verifying YES button on Cancel Class card after selecting any reason
 
     @When("User select Cancellation reason")
     public void user_select_cancellation_reason() {
@@ -274,7 +306,7 @@ public class HomePage extends BaseUtil {
     }
 
 
-    //Scenario: 7 #Verifying referral card on Home Page
+    //Scenario: 8 #Verifying referral card on Home Page
 
     @When("User clicks on Know More CTA of referral card")
     public void user_clicks_on_know_more_cta_of_referral_card() throws InterruptedException {
@@ -326,7 +358,7 @@ public class HomePage extends BaseUtil {
     }
 
 
-    //Scenario: 8 #Verifying COPY LINK on Invite Screen
+    //Scenario: 9 #Verifying COPY LINK on Invite Screen
 
     @When("User taps on Copy Link button")
     public void user_taps_on_share_link_button() {
@@ -365,7 +397,7 @@ public class HomePage extends BaseUtil {
 
 
 
-    //Scenario: 9 #Verifying Know More CTA on Invite Screen
+    //Scenario: 10 #Verifying Know More CTA on Invite Screen
 
     @When("User clicks on referral card of Invite & Win Screen")
     public void User_clicks_on_referral_card_of_Invite_Win_Screen() {
@@ -386,7 +418,7 @@ public class HomePage extends BaseUtil {
     }
 
 
-    //Scenario: 10 #Verifying Leaderboard Screen
+    //Scenario: 11 #Verifying Leaderboard Screen
 
     @When("User clicks on Leaderboard link")
     public void User_clicks_on_Leaderboard_link() {
@@ -403,6 +435,89 @@ public class HomePage extends BaseUtil {
         Assert.assertTrue(_is_displayed(PO.Leaderboard_Page));
 
     }
+
+
+    //Scenario: 12 #Verifying global House Banner
+
+    @When("User clicks on global house banner")
+    public void user_clicks_on_global_house_banner() {
+
+       //Clearing Data of Test User from DB before Running this Test
+       _getResult(valueForTheGivenKey("DeleteGlobalHouseEntry"), null, null);
+
+       //Waiting for Global House Banner
+        _wait(PO.Global_House);
+
+       //Redirecting to Global House Screen
+       _click(PO.Global_House);
+
+    }
+
+
+    @Then("User should be redirected to Global House Screen")
+    public void user_should_be_redirected_to_global_house_screen() {
+
+        //Waiting to land on Global House Page
+        _wait(PO.Page_Title);
+
+        //Validating Global House Page
+        Assert.assertEquals("Global House", _get_text(PO.Page_Title));
+
+    }
+
+    @When("User selects all the Preference")
+    public void user_selects_all_the_preference() throws InterruptedException {
+
+        //Scrolling till Submit CTA
+        Scrolling_to_element(PO.Book_Your_Class_CTA);
+
+        //Selecting all the 3 Slots
+        //Fetching list of WebElements
+        List<WebElement> slots = driver.findElements(PO.Global_House_slots);
+
+        //Using enhanced for loop to get the elements
+        for (WebElement ele : slots)
+
+        {
+            //Selecting Date/Time Slot CTA
+            try {
+                ele.click();
+            }
+            catch (StaleElementReferenceException e)
+            {
+                ele.click();
+            }
+
+            //Selecting Day/Time from Bittom Sheet
+            _wait_till_element_available_in_dropdown(PO.Bottom_Sheet_Elements_Android, 5);
+            _random_options_from_dropdown(PO.Global_House_slot_bottom_sheet);
+
+        }
+
+    }
+
+    @Then("User clicks on Submit CTA")
+    public void Submit_cta_should_get_enabled() {
+
+        _click(PO.Book_Your_Class_CTA);
+
+    }
+
+    @Then("Verify Congratulations! message on Global House Screen")
+    public void verify_congratulations_message_on_global_house_screen() throws InterruptedException {
+
+        //Scrolling till top
+        swipeScreen(Direction.DOWN);
+
+        //Scrolling till Congratulations!! Message
+        Scrolling_to_element(PO.Global_House_Congrats);
+
+        //Asserting the Success message
+        Assert.assertEquals(valueForTheGivenKey("Success_Message_GH"),
+                _get_text(PO.Global_House_Successsfull_Entry));
+
+    }
+
 
 
 }

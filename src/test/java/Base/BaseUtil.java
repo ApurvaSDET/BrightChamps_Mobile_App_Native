@@ -4,6 +4,7 @@ import ADBExecutor.ADBExecutor;
 import PageObject.PageObject;
 import PageObject.PageObjectDemo;
 import PageObject.PageObjectProfile;
+import PageObject.PageObjectBCBeans;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.remote.HideKeyboardStrategy;
@@ -20,7 +21,7 @@ import pCloudy_APIs.pCloudy_APIs_Utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -40,6 +41,7 @@ public class BaseUtil {
     public PageObject PO;
     public PageObjectDemo POD;
     public PageObjectProfile POP;
+    public PageObjectBCBeans POB;
 
 
 
@@ -51,19 +53,11 @@ public class BaseUtil {
          PO = new PageObject();
          POD = new PageObjectDemo();
          POP = new PageObjectProfile();
+         POB = new PageObjectBCBeans();
 
         //initializing static attributes declared above
-        if (Platform.equalsIgnoreCase("Android"))
-        {
-            attributeID = "content-desc";
-            attributeText = "text";
-        }
-
-        if (Platform.equalsIgnoreCase("iOS"))
-        {
-            attributeID = "name";
-            attributeText = "label";
-        }
+        attributeID  = Platform.equalsIgnoreCase("Android") ? "content-desc" : "name";
+        attributeText  = Platform.equalsIgnoreCase("Android") ? "text" : "label";
 
     }
 
@@ -191,6 +185,46 @@ public class BaseUtil {
         }
 
     }
+
+    public Object _getResult(String Query, String DateType, String Column){
+
+        Object Data = null;
+
+        try {
+            Connection dbConnection = DriverManager
+                    .getConnection(System.getenv("DB_CONNECTIONURL")+"/?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false",System.getenv("DB_USERNAME"),System.getenv("DB_PASSWORD"));
+            Statement stmt = dbConnection.createStatement();
+
+            if(stmt.execute(Query))
+            {
+                ResultSet rs = stmt.executeQuery(Query);
+
+                while (rs.next()) {
+
+                    switch (DateType) {
+                        case "int":
+                            Data = rs.getInt(Column);
+                            break;
+
+                        case "String":
+                            Data = rs.getString(Column);
+                            break;
+                    }
+                }
+
+            }
+
+            dbConnection.close();
+        } catch (SQLException e) {
+            System.out.println("database-ConnectionError: " + e);
+            System.exit(0);
+        }
+
+        return Data;
+
+    }
+
+
 
     public static void _SendKeys(By value, String text){
 
@@ -428,17 +462,17 @@ public class BaseUtil {
         try {
             al.get(rand.nextInt(dropdown_menu.size())).click();
         }
-        catch (ElementClickInterceptedException e)
+        catch (ElementClickInterceptedException | StaleElementReferenceException | IllegalArgumentException e)
         {
             try {
                 al.get(rand.nextInt(dropdown_menu.size())).click();
             }
-            catch (ElementClickInterceptedException err)
+            catch (ElementClickInterceptedException | StaleElementReferenceException | IllegalArgumentException err)
             {
                 try {
                     al.get(rand.nextInt(dropdown_menu.size())).click();
                 }
-                catch (ElementClickInterceptedException Er)
+                catch (ElementClickInterceptedException | StaleElementReferenceException | IllegalArgumentException Er)
                 {
                     al.get(rand.nextInt(dropdown_menu.size())).click();
                 }
@@ -472,11 +506,11 @@ public class BaseUtil {
         catch (ElementClickInterceptedException e)
         {
             try {
-                al.get(rand.nextInt(dropdown_menu.size())).click();
+                al.get(rand.nextInt(size)).click();
             }
             catch (ElementClickInterceptedException err)
             {
-                al.get(rand.nextInt(dropdown_menu.size())).click();
+                al.get(rand.nextInt(size)).click();
             }
         }
 

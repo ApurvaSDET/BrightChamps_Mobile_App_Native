@@ -76,7 +76,7 @@ public class Hooks extends BaseUtil {
                 capabilities.setCapability("pCloudy_DeviceFullName", pCloudy_DeviceFullName);
                 capabilities.setCapability("platformName", "ios");
                 capabilities.setCapability("automationName", "XCUITest");
-                capabilities.setCapability("pCloudy_ApplicationName", "Learner_Resigned1651478015.ipa");
+                capabilities.setCapability("pCloudy_ApplicationName", "Learner-1652433790_Resigned1652433804.ipa");
                 capabilities.setCapability("appPackage", "com.brightchamps.learner");
                 capabilities.setCapability("pCloudy_WildNet", "true");
                 capabilities.setCapability("pCloudy_EnableVideo", "true");
@@ -89,7 +89,7 @@ public class Hooks extends BaseUtil {
 
         URL url = new URL("https://device.pcloudy.com/appiumcloud/wd/hub");
         driver = new AppiumDriver(url, capabilities);
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 20);
 
         //Handling Notificiation Alert in iOS
         if (Platform.equalsIgnoreCase("iOS"))
@@ -141,7 +141,7 @@ public class Hooks extends BaseUtil {
 
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
         driver = new AppiumDriver(url,cap );
-        wait = new WebDriverWait(driver, 3);
+        wait = new WebDriverWait(driver, 10);
 
         //Handling Notificiation Alert in iOS
         //if (Platform.equalsIgnoreCase("iOS"))

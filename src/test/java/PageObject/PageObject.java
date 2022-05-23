@@ -53,9 +53,23 @@ public class PageObject {
 
    public By Cancel_button = By.xpath("//*[@"+BaseUtil.attributeID+"='cancel_class']");
 
+   public By Not_Available_Next_Class = By.xpath("//*[@"+BaseUtil.attributeText+"='Not available for next class']");
+
+   public By Update_Entire_Schedule = By.xpath("//*[@"+BaseUtil.attributeText+"='Want to update your entire schedule']");
+
+   public By Fast_Course_Completion = By.xpath("//*[@"+BaseUtil.attributeText+"='Want to complete your course fast']");
+
    public By Number_of_Classes = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'no_of_classes_')]");
 
-   public By Next_Class_Selected = By.xpath("//*[@"+BaseUtil.attributeID+"='next_class_selected']");
+   public By Global_House = By.xpath("//*[@content-desc='beans_count']/following-sibling::android.widget.HorizontalScrollView");
+
+   public By Global_House_slots = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'GH_Select ')]");
+
+   public By Global_House_slot_bottom_sheet = By.xpath("//*[starts-with(@"+BaseUtil.attributeID+",'select_GH_')]");
+
+   public By Global_House_Congrats = By.xpath("//*[@"+BaseUtil.attributeText+"='Till then stay connected :)']");
+
+   public By Global_House_Successsfull_Entry = By.xpath("//*[starts-with(@"+BaseUtil.attributeText+",'Your entry')]");
 
    public By Next_Class_date = By.xpath("//*[@"+BaseUtil.attributeID+"='select_day']");
 
@@ -79,11 +93,17 @@ public class PageObject {
 
    public By Book_Your_Class_CTA = By.xpath("//*[@"+BaseUtil.attributeID+"='button']");
 
+   public By Submit_CTA = By.xpath("//*[@"+BaseUtil.attributeText+"='Submit']");
+
+   public By Disclaimer_Text = By.xpath("//*[starts-with(@"+BaseUtil.attributeText+",'Disclaimer:')]");
+
    public By Toast_Message = By.xpath("//*[@"+BaseUtil.attributeID+"='toast']/*[@index='1']");
 
    public By Native_Toast_Message = By.xpath("//*[@"+BaseUtil.attributeID+"='toast']/*[@index='0']");
 
-   public By All_Class = By.xpath("//*[@"+BaseUtil.attributeID+"='all_class']");
+   public By Class_1_Select_Time = By.xpath("//*[@"+BaseUtil.attributeText+"='Class 1']//following-sibling::*[@"+BaseUtil.attributeID+"='select_slot']");
+
+   public By Class_4_Select_Time = By.xpath("//*[@"+BaseUtil.attributeText+"='Class 4']//following-sibling::*[@"+BaseUtil.attributeID+"='select_slot']");
 
    public By All_Class_Selected = By.xpath("//*[@"+BaseUtil.attributeID+"='all_class_selected']");
 
@@ -91,9 +111,9 @@ public class PageObject {
 
    public By Third_Class_dropdown = By.xpath("//*[@"+BaseUtil.attributeID+"='select_day'][3]");
 
-   public By Fourth_class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='4th Class']");
+   public By Fourth_class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='Class 4']");
 
-   public By Third_Class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='3rd Class']");
+   public By Third_Class_dropdown_ios = By.xpath("//*[@"+BaseUtil.attributeID+"='Class 3']");
 
    public By Hidden_Menu = By.xpath("//*[@"+BaseUtil.attributeID+"='hidden_menu']");
 
@@ -147,5 +167,20 @@ public class PageObject {
 
    public By Schedule_classes_CTA_home = By.xpath("//*[@"+BaseUtil.attributeID+"='paid_schedule_now_clicked']");
 
+
+   //Method to select Day and Time Slot to Rescheduling
+   public void Select_slot() {
+
+      if (BaseUtil.Platform.equalsIgnoreCase("Android")) {
+         BaseUtil._wait_till_element_available_in_dropdown(this.Bottom_Sheet_Elements_Android, 5);
+         BaseUtil._random_options_from_dropdown(this.Bottom_Sheet_Elements_Android);
+      }
+      else
+      {
+         BaseUtil._wait_till_element_available_in_dropdown(this.Bottom_Sheet_Elements, 5);
+         BaseUtil._random_options_from_dropdown(this.Bottom_Sheet_Elements);
+      }
+
+   }
 
 }

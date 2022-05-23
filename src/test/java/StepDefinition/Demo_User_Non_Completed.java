@@ -37,10 +37,6 @@ public class Demo_User_Non_Completed extends BaseUtil {
             _wait(PO.triple_dots);
             _click(PO.triple_dots);
 
-            //wait for dropdown to appear
-            _wait(PO.Reschedule);
-            _click(PO.Reschedule);
-
         }
 
     }
@@ -64,6 +60,14 @@ public class Demo_User_Non_Completed extends BaseUtil {
 
         _random_options_from_dropdown(PO.Bottom_Sheet_Elements_reason);
 
+
+    }
+
+    @Then("User clicks on Book your Slot CTA")
+    public void User_clicks_on_Book_your_Slot_CTA() {
+
+        _wait(PO.Book_Your_Class_CTA);
+        _click(PO.Book_Your_Class_CTA);
 
     }
 
